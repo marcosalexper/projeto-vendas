@@ -419,6 +419,11 @@ public class Frmcliente extends javax.swing.JFrame {
 
         btnpesquisar.setBackground(new java.awt.Color(153, 153, 153));
         btnpesquisar.setText("Pesquisar");
+        btnpesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpesquisarActionPerformed(evt);
+            }
+        });
 
         tabelaClientes.setBackground(new java.awt.Color(255, 255, 255));
         tabelaClientes.setModel(new javax.swing.table.DefaultTableModel(
@@ -661,6 +666,38 @@ public class Frmcliente extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btneditarActionPerformed
+
+    private void btnpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarActionPerformed
+        //Botao pesquisar
+        String nome = "%"+txtpesquisa.getText()+"%";
+        
+        ClientesDAO dao = new ClientesDAO();
+        List<Clientes> lista = dao.buscaClientePorNome(nome);
+        
+        DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
+        dados.setNumRows(0);
+
+        for (Clientes c : lista) {
+            dados.addRow(new Object[]{
+                c.getId(),
+                c.getNome(),
+                c.getRg(),
+                c.getCpf(),
+                c.getEmail(),
+                c.getTelefone(),
+                c.getCelular(),
+                c.getCep(),
+                c.getEndereco(),
+                c.getNumero(),
+                c.getComplemento(),
+                c.getBairro(),
+                c.getCidade(),
+                c.getUf()
+
+            });
+        }
+        
+    }//GEN-LAST:event_btnpesquisarActionPerformed
 
     /**
      * @param args the command line arguments
