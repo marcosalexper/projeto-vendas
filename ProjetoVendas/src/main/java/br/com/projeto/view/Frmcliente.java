@@ -495,6 +495,11 @@ public class Frmcliente extends javax.swing.JFrame {
         });
 
         btneditar.setText("EDITAR");
+        btneditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneditarActionPerformed(evt);
+            }
+        });
 
         btnexcluir.setText("EXCLUIR");
         btnexcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -565,10 +570,22 @@ public class Frmcliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnnovoActionPerformed
 
     private void btnexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexcluirActionPerformed
-        // TODO add your handling code here:
+         //Botao excluir
+        try {
+            Clientes obj = new Clientes();
+            
+            obj.setId(Integer.parseInt(txtcodigo.getText()));
+
+            ClientesDAO dao = new ClientesDAO();
+            
+            dao.excluirCliente(obj);
+            
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnexcluirActionPerformed
 
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
+       //Botao salvar
         try {
             Clientes obj = new Clientes();
 
@@ -590,7 +607,7 @@ public class Frmcliente extends javax.swing.JFrame {
             dao.cadastrarCliente(obj);
         } catch (Exception e) {
         }
-// TODO add your handling code here:
+
     }//GEN-LAST:event_btnsalvarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -617,6 +634,33 @@ public class Frmcliente extends javax.swing.JFrame {
         txtcidade.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(),12).toString());
         cbuf.setSelectedItem(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(),13).toString());
     }//GEN-LAST:event_tabelaClientesMouseClicked
+
+    private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
+        //Botao editar
+        try {
+            Clientes obj = new Clientes();
+
+            obj.setNome(txtnome.getText());
+            obj.setRg(txtrg.getText());
+            obj.setCpf(txtcpf.getText());
+            obj.setEmail(txtemail.getText());
+            obj.setTelefone(txtfixo.getText());
+            obj.setCelular(txtcel.getText());
+            obj.setCep(txtcep.getText());
+            obj.setEndereco(txtend.getText());
+            obj.setNumero(Integer.parseInt(txtnumero.getText()));
+            obj.setComplemento(txtcomplemento.getText());
+            obj.setBairro(txtbairro.getText());
+            obj.setCidade(txtcidade.getText());
+            obj.setUf(cbuf.getSelectedItem().toString());
+            
+            obj.setId(Integer.parseInt(txtcodigo.getText()));
+
+            ClientesDAO dao = new ClientesDAO();
+            dao.alterarCliente(obj);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btneditarActionPerformed
 
     /**
      * @param args the command line arguments
