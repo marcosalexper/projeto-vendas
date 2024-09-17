@@ -95,8 +95,8 @@ public class Frmcliente extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtpesquisa = new javax.swing.JTextField();
+        btnpesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaClientes = new javax.swing.JTable();
         btnnovo = new javax.swing.JButton();
@@ -415,10 +415,10 @@ public class Frmcliente extends javax.swing.JFrame {
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Nome:");
 
-        jTextField9.setBackground(new java.awt.Color(153, 153, 153));
+        txtpesquisa.setBackground(new java.awt.Color(153, 153, 153));
 
-        jButton1.setBackground(new java.awt.Color(153, 153, 153));
-        jButton1.setText("Pesquisar");
+        btnpesquisar.setBackground(new java.awt.Color(153, 153, 153));
+        btnpesquisar.setText("Pesquisar");
 
         tabelaClientes.setBackground(new java.awt.Color(255, 255, 255));
         tabelaClientes.setModel(new javax.swing.table.DefaultTableModel(
@@ -459,9 +459,9 @@ public class Frmcliente extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(btnpesquisar)
                         .addGap(0, 419, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -471,8 +471,8 @@ public class Frmcliente extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(txtpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnpesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(102, Short.MAX_VALUE))
@@ -701,9 +701,9 @@ public class Frmcliente extends javax.swing.JFrame {
     private javax.swing.JButton btneditar;
     private javax.swing.JButton btnexcluir;
     private javax.swing.JButton btnnovo;
+    private javax.swing.JButton btnpesquisar;
     private javax.swing.JButton btnsalvar;
     private javax.swing.JComboBox<String> cbuf;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -725,7 +725,6 @@ public class Frmcliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JTable tabelaClientes;
     private javax.swing.JTextField txtbairro;
     private javax.swing.JFormattedTextField txtcel;
@@ -739,6 +738,7 @@ public class Frmcliente extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtfixo;
     private javax.swing.JTextField txtnome;
     private javax.swing.JTextField txtnumero;
+    private javax.swing.JTextField txtpesquisa;
     private javax.swing.JFormattedTextField txtrg;
     // End of variables declaration//GEN-END:variables
 }
