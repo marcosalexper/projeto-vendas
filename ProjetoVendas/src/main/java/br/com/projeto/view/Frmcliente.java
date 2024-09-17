@@ -6,6 +6,8 @@ package br.com.projeto.view;
 
 import br.com.projeto.dao.ClientesDAO;
 import br.com.projeto.model.Clientes;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,12 +15,41 @@ import br.com.projeto.model.Clientes;
  */
 public class Frmcliente extends javax.swing.JFrame {
 
+    //Metodo listar na tabela
+    public void listar() {
+
+        ClientesDAO dao = new ClientesDAO();
+        List<Clientes> lista = dao.listarClientes();
+        DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
+        dados.setNumRows(0);
+
+        for (Clientes c : lista) {
+            dados.addRow(new Object[]{
+                c.getId(),
+                c.getNome(),
+                c.getRg(),
+                c.getCpf(),
+                c.getEmail(),
+                c.getTelefone(),
+                c.getCelular(),
+                c.getCep(),
+                c.getEndereco(),
+                c.getNumero(),
+                c.getComplemento(),
+                c.getBairro(),
+                c.getCidade(),
+                c.getUf()
+
+            });
+        }
+    }
+
     /**
      * Creates new form Frmcliente
      */
     public Frmcliente() {
         initComponents();
-        
+
     }
 
     /**
@@ -67,7 +98,7 @@ public class Frmcliente extends javax.swing.JFrame {
         jTextField9 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaClientes = new javax.swing.JTable();
         btnnovo = new javax.swing.JButton();
         btnsalvar = new javax.swing.JButton();
         btneditar = new javax.swing.JButton();
@@ -75,6 +106,11 @@ public class Frmcliente extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 204));
 
@@ -384,8 +420,8 @@ public class Frmcliente extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(153, 153, 153));
         jButton1.setText("Pesquisar");
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaClientes.setBackground(new java.awt.Color(255, 255, 255));
+        tabelaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -405,7 +441,7 @@ public class Frmcliente extends javax.swing.JFrame {
                 "Código", "Nome", "RG", "E-mail", "Telefone", "Celular", "CEP", "Endereço", "N°", "Comp", "Bairro", "Cidade", "UF"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelaClientes);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -530,7 +566,7 @@ public class Frmcliente extends javax.swing.JFrame {
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
         try {
             Clientes obj = new Clientes();
-            
+
             obj.setNome(txtnome.getText());
             obj.setRg(txtrg.getText());
             obj.setCpf(txtcpf.getText());
@@ -544,13 +580,18 @@ public class Frmcliente extends javax.swing.JFrame {
             obj.setBairro(txtbairro.getText());
             obj.setCidade(txtcidade.getText());
             obj.setUf(cbuf.getSelectedItem().toString());
-            
+
             ClientesDAO dao = new ClientesDAO();
             dao.cadastrarCliente(obj);
         } catch (Exception e) {
         }
 // TODO add your handling code here:
     }//GEN-LAST:event_btnsalvarActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // Carrega a lista
+        listar();
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -615,8 +656,8 @@ public class Frmcliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTable tabelaClientes;
     private javax.swing.JTextField txtbairro;
     private javax.swing.JFormattedTextField txtcel;
     private javax.swing.JFormattedTextField txtcep;
