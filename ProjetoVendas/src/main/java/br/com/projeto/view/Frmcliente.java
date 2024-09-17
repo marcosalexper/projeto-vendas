@@ -4,6 +4,9 @@
  */
 package br.com.projeto.view;
 
+import br.com.projeto.dao.ClientesDAO;
+import br.com.projeto.model.Clientes;
+
 /**
  *
  * @author Win11
@@ -15,6 +18,7 @@ public class Frmcliente extends javax.swing.JFrame {
      */
     public Frmcliente() {
         initComponents();
+        
     }
 
     /**
@@ -64,10 +68,10 @@ public class Frmcliente extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnnovo = new javax.swing.JButton();
+        btnsalvar = new javax.swing.JButton();
+        btneditar = new javax.swing.JButton();
+        btnexcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -204,7 +208,7 @@ public class Frmcliente extends javax.swing.JFrame {
         jLabel13.setText("UF:");
 
         cbuf.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cbuf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbuf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SP", "MG", "RJ", "SC" }));
 
         txtrg.setBackground(new java.awt.Color(153, 153, 153));
         txtrg.setForeground(new java.awt.Color(255, 255, 255));
@@ -435,21 +439,26 @@ public class Frmcliente extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Consulta de Clientes", jPanel3);
 
-        jButton3.setText("NOVO");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnnovo.setText("NOVO");
+        btnnovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnnovoActionPerformed(evt);
             }
         });
 
-        jButton5.setText("SALVAR");
-
-        jButton4.setText("EDITAR");
-
-        jButton2.setText("EXCLUIR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnsalvar.setText("SALVAR");
+        btnsalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnsalvarActionPerformed(evt);
+            }
+        });
+
+        btneditar.setText("EDITAR");
+
+        btnexcluir.setText("EXCLUIR");
+        btnexcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnexcluirActionPerformed(evt);
             }
         });
 
@@ -463,13 +472,13 @@ public class Frmcliente extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(106, 106, 106)
-                .addComponent(jButton3)
+                .addComponent(btnnovo)
                 .addGap(59, 59, 59)
-                .addComponent(jButton5)
+                .addComponent(btnsalvar)
                 .addGap(48, 48, 48)
-                .addComponent(jButton4)
+                .addComponent(btneditar)
                 .addGap(46, 46, 46)
-                .addComponent(jButton2)
+                .addComponent(btnexcluir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -480,10 +489,10 @@ public class Frmcliente extends javax.swing.JFrame {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton5)
-                    .addComponent(jButton4)
-                    .addComponent(jButton2))
+                    .addComponent(btnnovo)
+                    .addComponent(btnsalvar)
+                    .addComponent(btneditar)
+                    .addComponent(btnexcluir))
                 .addGap(0, 26, Short.MAX_VALUE))
         );
 
@@ -510,13 +519,38 @@ public class Frmcliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcpfActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnnovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnovoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnnovoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexcluirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnexcluirActionPerformed
+
+    private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
+        try {
+            Clientes obj = new Clientes();
+            
+            obj.setNome(txtnome.getText());
+            obj.setRg(txtrg.getText());
+            obj.setCpf(txtcpf.getText());
+            obj.setEmail(txtemail.getText());
+            obj.setTelefone(txtfixo.getText());
+            obj.setCelular(txtcel.getText());
+            obj.setCep(txtcep.getText());
+            obj.setEndereco(txtend.getText());
+            obj.setNumero(Integer.parseInt(txtnumero.getText()));
+            obj.setComplemento(txtcomplemento.getText());
+            obj.setBairro(txtbairro.getText());
+            obj.setCidade(txtcidade.getText());
+            obj.setUf(cbuf.getSelectedItem().toString());
+            
+            ClientesDAO dao = new ClientesDAO();
+            dao.cadastrarCliente(obj);
+        } catch (Exception e) {
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnsalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -554,12 +588,12 @@ public class Frmcliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btneditar;
+    private javax.swing.JButton btnexcluir;
+    private javax.swing.JButton btnnovo;
+    private javax.swing.JButton btnsalvar;
     private javax.swing.JComboBox<String> cbuf;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
