@@ -6,7 +6,7 @@ Projeto de controle de vendas em Java Desktop.</br>
 >![MySQL](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)</br>
 
 
-### Features
+### ✍️Features
 
 - [x] Cadastro e gerenciamento de cliente.
 - [ ] Cadastro e gerenciamento de produtos.
