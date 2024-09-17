@@ -416,6 +416,11 @@ public class Frmcliente extends javax.swing.JFrame {
         jLabel16.setText("Nome:");
 
         txtpesquisa.setBackground(new java.awt.Color(153, 153, 153));
+        txtpesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtpesquisaKeyPressed(evt);
+            }
+        });
 
         btnpesquisar.setBackground(new java.awt.Color(153, 153, 153));
         btnpesquisar.setText("Pesquisar");
@@ -698,6 +703,37 @@ public class Frmcliente extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnpesquisarActionPerformed
+
+    private void txtpesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpesquisaKeyPressed
+        //Busca por caractere 
+        String nome = "%"+txtpesquisa.getText()+"%";
+        
+        ClientesDAO dao = new ClientesDAO();
+        List<Clientes> lista = dao.buscaClientePorNome(nome);
+        
+        DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
+        dados.setNumRows(0);
+
+        for (Clientes c : lista) {
+            dados.addRow(new Object[]{
+                c.getId(),
+                c.getNome(),
+                c.getRg(),
+                c.getCpf(),
+                c.getEmail(),
+                c.getTelefone(),
+                c.getCelular(),
+                c.getCep(),
+                c.getEndereco(),
+                c.getNumero(),
+                c.getComplemento(),
+                c.getBairro(),
+                c.getCidade(),
+                c.getUf()
+
+            });
+        }
+    }//GEN-LAST:event_txtpesquisaKeyPressed
 
     /**
      * @param args the command line arguments

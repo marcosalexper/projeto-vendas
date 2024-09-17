@@ -672,6 +672,9 @@
                   <Color blue="99" green="99" red="99" type="rgb"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtpesquisaKeyPressed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnpesquisar">
               <Properties>
