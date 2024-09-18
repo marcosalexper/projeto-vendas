@@ -4,9 +4,8 @@
  */
 package br.com.projeto.view;
 
-import br.com.projeto.dao.ClientesDAO;
+
 import br.com.projeto.dao.FuncionariosDAO;
-import br.com.projeto.model.Clientes;
 import br.com.projeto.model.Funcionarios;
 import br.com.projeto.model.Utilitarios;
 import java.util.List;
@@ -786,7 +785,7 @@ public class Frmfuncionarios extends javax.swing.JFrame {
         DefaultTableModel dados = (DefaultTableModel) tabelaFuncionarios.getModel();
         dados.setNumRows(0);
 
-        for (Clientes c : lista) {
+        for (Funcionarios c : lista) {
             dados.addRow(new Object[]{
                 c.getId(),
                 c.getNome(),
@@ -812,13 +811,13 @@ public class Frmfuncionarios extends javax.swing.JFrame {
         //Busca por caractere 
         String nome = "%" + txtpesquisa.getText() + "%";
 
-        ClientesDAO dao = new ClientesDAO();
-        List<Clientes> lista = dao.buscaClientePorNome(nome);
+        FuncionariosDAO dao = new FuncionariosDAO();
+        List<Funcionarios> lista = dao.buscaFuncionarioPorNome(nome);
 
         DefaultTableModel dados = (DefaultTableModel) tabelaFuncionarios.getModel();
         dados.setNumRows(0);
 
-        for (Clientes c : lista) {
+        for (Funcionarios c : lista) {
             dados.addRow(new Object[]{
                 c.getId(),
                 c.getNome(),
@@ -851,8 +850,8 @@ public class Frmfuncionarios extends javax.swing.JFrame {
         // Botao pesquisar cliente por nome
         try {
             String nome=txtnome.getText().trim();
-            Clientes obj = new Clientes();
-            ClientesDAO dao = new ClientesDAO();
+            Funcionarios obj = new Funcionarios();
+            FuncionariosDAO dao = new FuncionariosDAO();
 
             obj = dao.consultaPorNome(nome);
             
@@ -864,6 +863,9 @@ public class Frmfuncionarios extends javax.swing.JFrame {
             txtrg.setText(obj.getRg());
             txtcpf.setText(obj.getCpf());
             txtemail.setText(obj.getEmail());
+            txtsenha.setText(obj.getSenha());
+            txtcargo.setText(obj.getCargo());
+            cbnivel.setSelectedItem(obj.getNivel_acesso());
             txtfixo.setText(obj.getTelefone());
             txtcel.setText(obj.getCelular());
             txtcep.setText(obj.getCep());
