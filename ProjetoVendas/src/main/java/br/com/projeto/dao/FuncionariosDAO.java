@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Win11
+ * @author Marco Alexandre Pereira
  */
 public class FuncionariosDAO {
     
