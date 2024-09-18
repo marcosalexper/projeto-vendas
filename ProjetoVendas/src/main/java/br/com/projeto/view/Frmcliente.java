@@ -8,6 +8,7 @@ import br.com.projeto.dao.ClientesDAO;
 import br.com.projeto.model.Clientes;
 import br.com.projeto.model.Utilitarios;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -780,11 +781,13 @@ public class Frmcliente extends javax.swing.JFrame {
     private void btnbuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscaActionPerformed
         // Botao pesquisar cliente por nome
         try {
-            String nome = txtnome.getText();
+            String nome=txtnome.getText().trim();
             Clientes obj = new Clientes();
             ClientesDAO dao = new ClientesDAO();
 
             obj = dao.consultaPorNome(nome);
+            
+            if(obj.getNome()!= null){
 
             //Exibir os dados do obj nos campos de texto
             txtcodigo.setText(String.valueOf(obj.getId()));
@@ -801,7 +804,10 @@ public class Frmcliente extends javax.swing.JFrame {
             txtbairro.setText(obj.getBairro());
             txtcidade.setText(obj.getCidade());
             cbuf.setSelectedItem(obj.getUf());
-
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Cliente não encontrado!");
+            }
         } catch (Exception e) {
         }
 

@@ -215,7 +215,7 @@ public class ClientesDAO {
     public Clientes consultaPorNome(String nome){
         try {
             //Criar, organizar e executar o sql
-            String sql = "select * from tb_clientes where name = ?";
+            String sql = "select * from tb_clientes where nome = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, nome);
             
