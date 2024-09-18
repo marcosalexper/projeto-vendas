@@ -1,5 +1,5 @@
 # projeto-vendas</br>
-Projeto de controle de vendas em Java Desktop.</br>
+Este projeto é uma aplicação desktop em Java, com MySQL como banco de dados, voltada para o controle de vendas em pequenos negócios. A ideia é oferecer uma interface simples e fácil de usar para gerenciar clientes, produtos, fornecedores e vendas de forma eficiente, facilitando o controle das transações e do estoque.</br>
 
 ## 🛠 Tecnologias utilizadas
 >![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)</br>
@@ -9,9 +9,9 @@ Projeto de controle de vendas em Java Desktop.</br>
 ### ✍️Features
 
 - [x] Cadastro e gerenciamento de cliente.
-- [ ] Cadastro e gerenciamento de produtos.
-- [ ] Cadastro e gerenciamento de fornecedores.
 - [x] Cadastro e gerenciamento de funcionários.
+- [ ] Cadastro e gerenciamento de fornecedores.
+- [ ] Cadastro e gerenciamento de produtos.
 - [ ] Cadastro e gerenciamento de vendas.</br>
 
 ## ✅ Status do Projeto
