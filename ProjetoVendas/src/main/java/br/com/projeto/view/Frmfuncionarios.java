@@ -752,6 +752,9 @@ public class Frmfuncionarios extends javax.swing.JFrame {
             obj.setRg(txtrg.getText());
             obj.setCpf(txtcpf.getText());
             obj.setEmail(txtemail.getText());
+            obj.setSenha(txtsenha.getText());
+            obj.setCargo(txtcargo.getText());
+            obj.setNivel_acesso(cbnivel.getSelectedItem().toString());
             obj.setTelefone(txtfixo.getText());
             obj.setCelular(txtcel.getText());
             obj.setCep(txtcep.getText());
