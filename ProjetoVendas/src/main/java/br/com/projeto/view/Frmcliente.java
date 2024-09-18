@@ -258,7 +258,7 @@ public class Frmcliente extends javax.swing.JFrame {
         jLabel13.setText("UF:");
 
         cbuf.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cbuf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SP", "MG", "RJ", "SC" }));
+        cbuf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
 
         txtrg.setBackground(new java.awt.Color(153, 153, 153));
         txtrg.setForeground(new java.awt.Color(255, 255, 255));
