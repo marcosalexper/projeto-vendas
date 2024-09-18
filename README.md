@@ -11,7 +11,7 @@ Projeto de controle de vendas em Java Desktop.</br>
 - [x] Cadastro e gerenciamento de cliente.
 - [ ] Cadastro e gerenciamento de produtos.
 - [ ] Cadastro e gerenciamento de fornecedores.
-- [ ] Cadastro e gerenciamento de funcionários.
+- [x] Cadastro e gerenciamento de funcionários.
 - [ ] Cadastro e gerenciamento de vendas.</br>
 
 ## ✅ Status do Projeto
