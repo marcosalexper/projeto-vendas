@@ -142,6 +142,7 @@ public class Frmcliente extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Código:");
 
+        txtcodigo.setEditable(false);
         txtcodigo.setBackground(new java.awt.Color(153, 153, 153));
         txtcodigo.setForeground(new java.awt.Color(255, 255, 255));
 
