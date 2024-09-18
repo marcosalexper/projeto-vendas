@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author Win11
+ * @author Marcos Alexandre Pereira
  */
 public class Utilitarios {
     
