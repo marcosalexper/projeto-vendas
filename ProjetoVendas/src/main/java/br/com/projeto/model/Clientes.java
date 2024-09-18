@@ -6,7 +6,7 @@ package br.com.projeto.model;
 
 /**
  *
- * @author Win11
+ * @author Marcos Alexandre Pereira
  */
 public class Clientes {
     
