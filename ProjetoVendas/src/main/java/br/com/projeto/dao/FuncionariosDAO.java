@@ -220,7 +220,7 @@ public class FuncionariosDAO {
             return null;
         }
     }
-     //Metodo consulta cliente por nome
+     //Metodo consulta funcionario por nome
     public Funcionarios consultaPorNome(String nome){
         try {
             //Criar, organizar e executar o sql
