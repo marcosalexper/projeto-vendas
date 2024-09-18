@@ -669,13 +669,13 @@ public class Frmfuncionarios extends javax.swing.JFrame {
     private void btnexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexcluirActionPerformed
         //Botao excluir
         try {
-            Clientes obj = new Clientes();
+            Funcionarios obj = new Funcionarios();
 
             obj.setId(Integer.parseInt(txtcodigo.getText()));
 
-            ClientesDAO dao = new ClientesDAO();
+            FuncionariosDAO dao = new FuncionariosDAO();
 
-            dao.excluirCliente(obj);
+            dao.excluirFuncionario(obj);
 
             new Utilitarios().LimpaTela(painel_dados);
 
@@ -743,7 +743,7 @@ public class Frmfuncionarios extends javax.swing.JFrame {
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
         //Botao editar
         try {
-            Clientes obj = new Clientes();
+            Funcionarios obj = new Funcionarios();
 
             obj.setNome(txtnome.getText());
             obj.setRg(txtrg.getText());
@@ -761,8 +761,8 @@ public class Frmfuncionarios extends javax.swing.JFrame {
 
             obj.setId(Integer.parseInt(txtcodigo.getText()));
 
-            ClientesDAO dao = new ClientesDAO();
-            dao.alterarCliente(obj);
+            FuncionariosDAO dao = new FuncionariosDAO();
+            dao.alterarFuncionario(obj);
 
             new Utilitarios().LimpaTela(painel_dados);
 
