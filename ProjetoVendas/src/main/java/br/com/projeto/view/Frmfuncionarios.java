@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Win11
  */
-public class Frmcfuncionarios extends javax.swing.JFrame {
+public class Frmfuncionarios extends javax.swing.JFrame {
 
     //Metodo listar na tabela
     public void listar() {
@@ -54,7 +54,7 @@ public class Frmcfuncionarios extends javax.swing.JFrame {
     /**
      * Creates new form Frmcliente
      */
-    public Frmcfuncionarios() {
+    public Frmfuncionarios() {
         initComponents();
 
     }
@@ -897,21 +897,23 @@ public class Frmcfuncionarios extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frmcfuncionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frmfuncionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frmcfuncionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frmfuncionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frmcfuncionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frmfuncionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frmcfuncionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frmfuncionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Frmcfuncionarios().setVisible(true);
+                new Frmfuncionarios().setVisible(true);
             }
         });
     }
