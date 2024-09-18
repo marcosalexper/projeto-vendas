@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Win11
+ * @author Marcos Alexandre Pereira
  */
 public class Frmcliente extends javax.swing.JFrame {
 
