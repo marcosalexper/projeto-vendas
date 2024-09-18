@@ -774,8 +774,8 @@ public class Frmfuncionarios extends javax.swing.JFrame {
         //Botao pesquisar
         String nome = "%" + txtpesquisa.getText() + "%";
 
-        ClientesDAO dao = new ClientesDAO();
-        List<Clientes> lista = dao.buscaClientePorNome(nome);
+        FuncionariosDAO dao = new FuncionariosDAO();
+        List<Funcionarios> lista = dao.buscaFuncionarioPorNome(nome);
 
         DefaultTableModel dados = (DefaultTableModel) tabelaFuncionarios.getModel();
         dados.setNumRows(0);
