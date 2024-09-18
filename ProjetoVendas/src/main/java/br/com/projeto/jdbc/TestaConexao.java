@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Win11
+ * @author Marcos Alexandre Pereira
  */
 public class TestaConexao {
     
