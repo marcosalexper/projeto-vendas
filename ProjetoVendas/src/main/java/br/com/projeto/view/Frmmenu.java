@@ -15,6 +15,8 @@ import javax.swing.ImageIcon;
  * @author Win11
  */
 public class Frmmenu extends javax.swing.JFrame {
+    
+    public String usuarioLogado;
 
     /**
      * Creates new form Frmmenu
@@ -210,6 +212,7 @@ public class Frmmenu extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         //Deixar maximizado
         this.setExtendedState(this.MAXIMIZED_BOTH);
+        lblusuario.setText(usuarioLogado);
         this.setVisible(true);
         
     }//GEN-LAST:event_formWindowActivated
