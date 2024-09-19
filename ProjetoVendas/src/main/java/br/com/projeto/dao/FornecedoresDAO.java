@@ -176,6 +176,7 @@ public class FornecedoresDAO {
             //Criar, organizar e executar o sql
             String sql = "select*from tb_fornecedores where nome like ?";
             PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1,nome);
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
