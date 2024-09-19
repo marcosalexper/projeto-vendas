@@ -4,6 +4,9 @@
  */
 package br.com.projeto.view;
 
+import br.com.projeto.dao.FuncionariosDAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Win11
@@ -77,6 +80,11 @@ public class FrmLogin extends javax.swing.JFrame {
 
         btnentrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnentrar.setText("ENTRAR");
+        btnentrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnentrarActionPerformed(evt);
+            }
+        });
 
         btnsair.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnsair.setText("SAIR");
@@ -135,6 +143,22 @@ public class FrmLogin extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnentrarActionPerformed
+        //Botao entrar
+        try {
+            String email,senha;
+            email = txtemail.getText();
+            senha = txtsenha.getText();
+            
+            FuncionariosDAO dao = new FuncionariosDAO();
+            
+            dao.efetuaLogin(email, senha);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Erro... ");
+        }
+    }//GEN-LAST:event_btnentrarActionPerformed
 
     /**
      * @param args the command line arguments

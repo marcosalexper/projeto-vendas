@@ -6,6 +6,7 @@ package br.com.projeto.dao;
 
 import br.com.projeto.jdbc.ConnectionFactory;
 import br.com.projeto.model.Funcionarios;
+import br.com.projeto.view.Frmmenu;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -277,7 +278,8 @@ public class FuncionariosDAO {
             if(rs.next()){
               //Usuario logou
               JOptionPane.showMessageDialog(null,"Seja bem-vindo!");
-              
+              Frmmenu tela = new Frmmenu();
+              tela.setVisible(true);
               
             }else{
               //Dados incorretos
