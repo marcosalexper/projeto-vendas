@@ -5,7 +5,9 @@
 package br.com.projeto.view;
 
 import br.com.projeto.dao.ClientesDAO;
+import br.com.projeto.dao.FornecedoresDAO;
 import br.com.projeto.model.Clientes;
+import br.com.projeto.model.Fornecedores;
 import br.com.projeto.model.Utilitarios;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -589,11 +591,10 @@ public class FrmFornecedores extends javax.swing.JFrame {
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
         //Botao salvar
         try {
-            Clientes obj = new Clientes();
+            Fornecedores obj = new Fornecedores();
 
             obj.setNome(txtnome.getText());
-            obj.setRg(txtcnpj.getText());
-            obj.setCpf(txtcpf.getText());
+            obj.setCnpj(txtcnpj.getText());
             obj.setEmail(txtemail.getText());
             obj.setTelefone(txtfixo.getText());
             obj.setCelular(txtcel.getText());
@@ -605,8 +606,8 @@ public class FrmFornecedores extends javax.swing.JFrame {
             obj.setCidade(txtcidade.getText());
             obj.setUf(cbuf.getSelectedItem().toString());
 
-            ClientesDAO dao = new ClientesDAO();
-            dao.cadastrarCliente(obj);
+            FornecedoresDAO dao = new FornecedoresDAO();
+            dao.cadastrarFornecedores(obj);
 
             new Utilitarios().LimpaTela(painel_dados);
 
