@@ -6,16 +6,17 @@ Este projeto é uma aplicação desktop em Java, com MySQL como banco de dados, 
 >![MySQL](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)</br>
 
 ## 💻 IDE
-Apache Netbeans</br>![image](https://github.com/user-attachments/assets/270a84d7-077f-43a2-ae8b-5e4b1331638a)
+>Apache Netbeans</br>
+![image](https://github.com/user-attachments/assets/270a84d7-077f-43a2-ae8b-5e4b1331638a)
 
 
 ## ✍️Features
 
-- [x] Cadastro e gerenciamento de cliente.
-- [x] Cadastro e gerenciamento de funcionários.
-- [x] Cadastro e gerenciamento de fornecedores.
-- [ ] Cadastro e gerenciamento de produtos.
-- [ ] Cadastro e gerenciamento de vendas.</br>
+>- [x] Cadastro e gerenciamento de cliente.
+>- [x] Cadastro e gerenciamento de funcionários.
+>- [x] Cadastro e gerenciamento de fornecedores.
+>- [ ] Cadastro e gerenciamento de produtos.
+>- [ ] Cadastro e gerenciamento de vendas.</br>
 
 ## ✅ Status do Projeto
 
