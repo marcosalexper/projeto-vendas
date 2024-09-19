@@ -75,10 +75,10 @@ public class FrmLogin extends javax.swing.JFrame {
         txtsenha.setBackground(new java.awt.Color(153, 153, 153));
         txtsenha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        btnentrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnentrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnentrar.setText("ENTRAR");
 
-        btnsair.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnsair.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnsair.setText("SAIR");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
