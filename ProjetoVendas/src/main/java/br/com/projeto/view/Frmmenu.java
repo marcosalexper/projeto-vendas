@@ -8,6 +8,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
+
+
 /**
  *
  * @author Win11
@@ -30,13 +32,14 @@ public class Frmmenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        painel_desktop = new javax.swing.JDesktopPane(){
-            ImageIcon icon = new ImageIcon(getClass() .getResource("/imagens/fundo.jpg"));
-            Image image = icon.getImage();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/imagens/fundo.jpg"));
 
+        Image image = icon.getImage();
+        painel_desktop = new javax.swing.JDesktopPane(){
             public void paintComponent(Graphics g){
-                g.drawImage(image, 0,0, getWidth() ,getHeight() ,this);
+                g.drawImage(image,0,0,getWidth(),getHeight(),this);
             }
+
         };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -71,7 +74,7 @@ public class Frmmenu extends javax.swing.JFrame {
         );
         painel_desktopLayout.setVerticalGroup(
             painel_desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 407, Short.MAX_VALUE)
+            .addGap(0, 413, Short.MAX_VALUE)
         );
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/clientes.png"))); // NOI18N
@@ -174,6 +177,7 @@ public class Frmmenu extends javax.swing.JFrame {
         //Deixar maximizado
         this.setExtendedState(this.MAXIMIZED_BOTH);
         this.setVisible(true);
+        
     }//GEN-LAST:event_formWindowActivated
 
     /**
