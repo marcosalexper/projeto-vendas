@@ -4,9 +4,7 @@
  */
 package br.com.projeto.view;
 
-import br.com.projeto.dao.ClientesDAO;
 import br.com.projeto.dao.FornecedoresDAO;
-import br.com.projeto.model.Clientes;
 import br.com.projeto.model.Fornecedores;
 import br.com.projeto.model.Utilitarios;
 import java.util.List;
@@ -22,17 +20,16 @@ public class FrmFornecedores extends javax.swing.JFrame {
     //Metodo listar na tabela
     public void listar() {
 
-        ClientesDAO dao = new ClientesDAO();
-        List<Clientes> lista = dao.listarClientes();
+        FornecedoresDAO dao = new FornecedoresDAO();
+        List<Fornecedores> lista = dao.listarFornecedores();
         DefaultTableModel dados = (DefaultTableModel) tabelaFornecedores.getModel();
         dados.setNumRows(0);
 
-        for (Clientes c : lista) {
+        for (Fornecedores c : lista) {
             dados.addRow(new Object[]{
                 c.getId(),
                 c.getNome(),
-                c.getRg(),
-                c.getCpf(),
+                c.getCnpj(),               
                 c.getEmail(),
                 c.getTelefone(),
                 c.getCelular(),
@@ -574,13 +571,13 @@ public class FrmFornecedores extends javax.swing.JFrame {
     private void btnexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexcluirActionPerformed
         //Botao excluir
         try {
-            Clientes obj = new Clientes();
+            Fornecedores obj = new Fornecedores();
 
             obj.setId(Integer.parseInt(txtcodigo.getText()));
 
-            ClientesDAO dao = new ClientesDAO();
+            FornecedoresDAO dao = new FornecedoresDAO();
 
-            dao.excluirCliente(obj);
+            dao.excluirFornecedor(obj);
 
             new Utilitarios().LimpaTela(painel_dados);
 
@@ -643,10 +640,10 @@ public class FrmFornecedores extends javax.swing.JFrame {
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
         //Botao editar
         try {
-            Clientes obj = new Clientes();
+            Fornecedores obj = new Fornecedores();
 
             obj.setNome(txtnome.getText());
-            obj.setRg(txtcnpj.getText());
+            obj.setCnpj(txtcnpj.getText());
             obj.setEmail(txtemail.getText());
             obj.setTelefone(txtfixo.getText());
             obj.setCelular(txtcel.getText());
@@ -660,8 +657,8 @@ public class FrmFornecedores extends javax.swing.JFrame {
 
             obj.setId(Integer.parseInt(txtcodigo.getText()));
 
-            ClientesDAO dao = new ClientesDAO();
-            dao.alterarCliente(obj);
+            FornecedoresDAO dao = new FornecedoresDAO();
+            dao.alterarFornecedor(obj);
 
             new Utilitarios().LimpaTela(painel_dados);
 
@@ -671,20 +668,19 @@ public class FrmFornecedores extends javax.swing.JFrame {
 
     private void btnpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarActionPerformed
         //Botao pesquisar
-        String nome = "%" + txtpesquisa.getText() + "%";
+          String nome = "%" + txtpesquisa.getText() + "%";
 
-        ClientesDAO dao = new ClientesDAO();
-        List<Clientes> lista = dao.buscaClientePorNome(nome);
+        FornecedoresDAO dao = new FornecedoresDAO();
+        List<Fornecedores> lista = dao.listarFornecedoresPorNome(nome);
 
         DefaultTableModel dados = (DefaultTableModel) tabelaFornecedores.getModel();
         dados.setNumRows(0);
 
-        for (Clientes c : lista) {
+        for (Fornecedores c : lista) {
             dados.addRow(new Object[]{
                 c.getId(),
                 c.getNome(),
-                c.getRg(),
-                c.getCpf(),
+                c.getCnpj(),
                 c.getEmail(),
                 c.getTelefone(),
                 c.getCelular(),
@@ -705,18 +701,17 @@ public class FrmFornecedores extends javax.swing.JFrame {
         //Busca por caractere 
         String nome = "%" + txtpesquisa.getText() + "%";
 
-        ClientesDAO dao = new ClientesDAO();
-        List<Clientes> lista = dao.buscaClientePorNome(nome);
+        FornecedoresDAO dao = new FornecedoresDAO();
+        List<Fornecedores> lista = dao.listarFornecedoresPorNome(nome);
 
         DefaultTableModel dados = (DefaultTableModel) tabelaFornecedores.getModel();
         dados.setNumRows(0);
 
-        for (Clientes c : lista) {
+        for (Fornecedores c : lista) {
             dados.addRow(new Object[]{
                 c.getId(),
                 c.getNome(),
-                c.getRg(),
-                c.getCpf(),
+                c.getCnpj(),
                 c.getEmail(),
                 c.getTelefone(),
                 c.getCelular(),
@@ -744,8 +739,8 @@ public class FrmFornecedores extends javax.swing.JFrame {
         // Botao pesquisar cliente por nome
         try {
             String nome=txtnome.getText().trim();
-            Clientes obj = new Clientes();
-            ClientesDAO dao = new ClientesDAO();
+            Fornecedores obj = new Fornecedores();
+            FornecedoresDAO dao = new FornecedoresDAO();
 
             obj = dao.consultaPorNome(nome);
             
@@ -754,7 +749,7 @@ public class FrmFornecedores extends javax.swing.JFrame {
             //Exibir os dados do obj nos campos de texto
             txtcodigo.setText(String.valueOf(obj.getId()));
             txtnome.setText(obj.getNome());
-            txtcnpj.setText(obj.getRg());
+            txtcnpj.setText(obj.getCnpj());
             txtemail.setText(obj.getEmail());
             txtfixo.setText(obj.getTelefone());
             txtcel.setText(obj.getCelular());
@@ -767,7 +762,7 @@ public class FrmFornecedores extends javax.swing.JFrame {
             cbuf.setSelectedItem(obj.getUf());
             }
             else{
-                JOptionPane.showMessageDialog(null,"Cliente não encontrado!");
+                JOptionPane.showMessageDialog(null,"Fornecedor não encontrado!");
             }
         } catch (Exception e) {
         }
