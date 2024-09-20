@@ -379,13 +379,13 @@ public class FrmProdutos extends javax.swing.JFrame {
     private void btnexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexcluirActionPerformed
         //Botao excluir
         try {
-            Clientes obj = new Clientes();
+            Produtos obj = new Produtos();
 
             obj.setId(Integer.parseInt(txtcodigo.getText()));
 
-            ClientesDAO dao = new ClientesDAO();
+            ProdutosDAO dao = new ProdutosDAO();
 
-            dao.excluirCliente(obj);
+            dao.excluir(obj);
 
             new Utilitarios().LimpaTela(painel_dados);
 
@@ -426,28 +426,38 @@ public class FrmProdutos extends javax.swing.JFrame {
         jTabbedPane1.setSelectedIndex(0);
 
         txtcodigo.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 0).toString());
-        txtdescricao.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 1).toString());
-    
-        txtpreco.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 4).toString());
-
-        cbfornecedor.setSelectedItem(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 13).toString());
+        txtdescricao.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 1).toString());   
+        txtpreco.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 2).toString());
+        txtqtdestoque.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(),3).toString());
+        
+        
+        Fornecedores f = new Fornecedores();
+        FornecedoresDAO dao = new FornecedoresDAO();
+        f = dao.consultaPorNome(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(),4).toString());
+        
+        cbfornecedor.removeAllItems();
+        cbfornecedor.getModel().setSelectedItem(f);
+        
     }//GEN-LAST:event_tabelaProdutosMouseClicked
 
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
         //Botao editar
         try {
-            Clientes obj = new Clientes();
-
-            obj.setNome(txtdescricao.getText());
-          
-            obj.setEmail(txtpreco.getText());
-           
-            obj.setUf(cbfornecedor.getSelectedItem().toString());
+            Produtos obj = new Produtos();
 
             obj.setId(Integer.parseInt(txtcodigo.getText()));
+            obj.setDescricao(txtdescricao.getText());        
+            obj.setPreco(Double.parseDouble(txtpreco.getText()));          
+            obj.setQtd_estoque(Integer.parseInt(txtqtdestoque.getText()));
+           
+            Fornecedores f = new Fornecedores();
+            f = (Fornecedores)cbfornecedor.getSelectedItem();
+             
+            obj.setFornecedor(f);
+            
 
-            ClientesDAO dao = new ClientesDAO();
-            dao.alterarCliente(obj);
+            ProdutosDAO dao = new ProdutosDAO();
+            dao.alterar(obj);
 
             new Utilitarios().LimpaTela(painel_dados);
 

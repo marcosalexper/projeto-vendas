@@ -55,7 +55,7 @@ public class ProdutosDAO {
     public void alterar(Produtos obj) {
         try {
 
-            String sql = "update into tb_produtos set descricao=?,preco=?,qtd_estoque=?,for_id=? where id=?";
+            String sql = "update tb_produtos set descricao=?,preco=?,qtd_estoque=?,for_id=? where id=?";
 
             //Conectar banco de dados e organizar o comando sql
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -63,6 +63,8 @@ public class ProdutosDAO {
             stmt.setDouble(2, obj.getPreco());
             stmt.setInt(3, obj.getQtd_estoque());
             stmt.setInt(4, obj.getFornecedor().getId());
+            
+            stmt.setInt(5,obj.getId());
 
             stmt.execute();
             stmt.close();
