@@ -15,7 +15,7 @@ Este projeto é uma aplicação desktop em Java, com MySQL como banco de dados, 
 >- [x] Cadastro e gerenciamento de cliente.
 >- [x] Cadastro e gerenciamento de funcionários.
 >- [x] Cadastro e gerenciamento de fornecedores.
->- [ ] Cadastro e gerenciamento de produtos.
+>- [x] Cadastro e gerenciamento de produtos.
 >- [ ] Cadastro e gerenciamento de vendas.</br>
 
 ## ✅ Status do Projeto
