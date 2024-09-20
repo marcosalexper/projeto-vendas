@@ -157,6 +157,11 @@ public class FrmProdutos extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
+        cbfornecedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbfornecedorMouseClicked(evt);
+            }
+        });
 
         btnbusca.setText("Pesquisar");
         btnbusca.addActionListener(new java.awt.event.ActionListener() {
@@ -512,26 +517,32 @@ public class FrmProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtpesquisaKeyPressed
 
     private void btnbuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscaActionPerformed
-        // Botao pesquisar cliente por nome
+        // Botao pesquisar produto por nome
         try {
             String nome=txtdescricao.getText().trim();
-            Clientes obj = new Clientes();
-            ClientesDAO dao = new ClientesDAO();
+            Produtos obj = new Produtos();
+            ProdutosDAO dao = new ProdutosDAO();
 
             obj = dao.consultaPorNome(nome);
+            cbfornecedor.removeAllItems();
 
-            if(obj.getNome()!= null){
+            if(obj.getDescricao()!= null){
 
                 //Exibir os dados do obj nos campos de texto
                 txtcodigo.setText(String.valueOf(obj.getId()));
-                txtdescricao.setText(obj.getNome());
-              
-                txtpreco.setText(obj.getEmail());
+                txtdescricao.setText(obj.getDescricao());             
+                txtpreco.setText(String.valueOf(obj.getPreco()));
+                txtqtdestoque.setText(String.valueOf(obj.getQtd_estoque()));
                
-                cbfornecedor.setSelectedItem(obj.getUf());
+                Fornecedores f = new Fornecedores();
+                FornecedoresDAO fdao = new FornecedoresDAO();
+                
+                f = fdao.consultaPorNome(obj.getFornecedor().getNome());
+                
+                cbfornecedor.getModel().setSelectedItem(f);
             }
             else{
-                JOptionPane.showMessageDialog(null,"Cliente não encontrado!");
+                JOptionPane.showMessageDialog(null,"Produto não encontrado!");
             }
         } catch (Exception e) {
         }
@@ -547,6 +558,16 @@ public class FrmProdutos extends javax.swing.JFrame {
             cbfornecedor.addItem(f);
         }
     }//GEN-LAST:event_cbfornecedorAncestorAdded
+
+    private void cbfornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbfornecedorMouseClicked
+        FornecedoresDAO dao = new FornecedoresDAO();
+        List<Fornecedores>listadefornecedores = dao.listarFornecedores();
+        cbfornecedor.removeAllItems();
+        
+        for(Fornecedores f : listadefornecedores){
+            cbfornecedor.addItem(f);
+        }
+    }//GEN-LAST:event_cbfornecedorMouseClicked
 
     /**
      * @param args the command line arguments

@@ -63,8 +63,8 @@ public class ProdutosDAO {
             stmt.setDouble(2, obj.getPreco());
             stmt.setInt(3, obj.getQtd_estoque());
             stmt.setInt(4, obj.getFornecedor().getId());
-            
-            stmt.setInt(5,obj.getId());
+
+            stmt.setInt(5, obj.getId());
 
             stmt.execute();
             stmt.close();
@@ -77,25 +77,25 @@ public class ProdutosDAO {
         }
 
     }
-    
+
     //Metodo excluir Produtos
-    public void excluir(Produtos obj){
+    public void excluir(Produtos obj) {
         try {
-            
+
             String sql = "delete from tb_produtos where id=?";
-            
+
             PreparedStatement stmt = con.prepareStatement(sql);
-            
-            stmt.setInt(1,obj.getId());
-            
+
+            stmt.setInt(1, obj.getId());
+
             stmt.execute();
             stmt.close();
-            
-            JOptionPane.showMessageDialog(null,"Produto excluido com sucesso!");
-            
+
+            JOptionPane.showMessageDialog(null, "Produto excluido com sucesso!");
+
         } catch (Exception erro) {
-            
-            JOptionPane.showMessageDialog(null,"Erro..." +erro);
+
+            JOptionPane.showMessageDialog(null, "Erro..." + erro);
         }
     }
 
@@ -136,7 +136,7 @@ public class ProdutosDAO {
             return null;
         }
     }
-    
+
     //Metodo listar Produto por nome
     public List<Produtos> listarProdutosPorNome(String nome) {
         try {
@@ -148,7 +148,7 @@ public class ProdutosDAO {
                     + "inner join tb_fornecedores as f on(p.for_id = f.id)where p.descricao like ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1,nome);
+            stmt.setString(1, nome);
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -172,6 +172,41 @@ public class ProdutosDAO {
         } catch (SQLException erro) {
 
             JOptionPane.showMessageDialog(null, "Erro..." + erro);
+            return null;
+        }
+    }
+
+    //Metodo consulta Produto por Nome
+    public Produtos consultaPorNome(String nome) {
+        try {
+
+            //Criar, organizar e executar o sql
+            String sql = "select p.id, p.descricao, p.preco, p.qtd_estoque, f.nome from tb_produtos as p "
+                    + "inner join tb_fornecedores as f on(p.for_id = f.id)where p.descricao = ?";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, nome);
+            ResultSet rs = stmt.executeQuery();
+            Produtos obj = new Produtos();
+            Fornecedores f = new Fornecedores();
+
+            if (rs.next()) {
+
+                obj.setId(rs.getInt("p.id"));
+                obj.setDescricao(rs.getString("p.descricao"));
+                obj.setPreco(rs.getDouble("p.preco"));
+                obj.setQtd_estoque(rs.getInt("p.qtd_estoque"));
+
+                f.setNome(rs.getString("f.nome"));
+
+                obj.setFornecedor(f);
+
+            }
+            return obj;
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "Produto não encontrado!");
             return null;
         }
     }
