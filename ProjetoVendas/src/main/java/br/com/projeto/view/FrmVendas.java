@@ -11,6 +11,8 @@ import br.com.projeto.model.Clientes;
 import br.com.projeto.model.Fornecedores;
 import br.com.projeto.model.Produtos;
 import br.com.projeto.model.Utilitarios;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -149,6 +151,7 @@ public class FrmVendas extends javax.swing.JFrame {
         txtnome.setBackground(new java.awt.Color(153, 153, 153));
         txtnome.setForeground(new java.awt.Color(255, 255, 255));
 
+        txtdataatual.setEditable(false);
         txtdataatual.setBackground(new java.awt.Color(153, 153, 153));
         txtdataatual.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -447,8 +450,12 @@ public class FrmVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_btncancelarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        // Carrega a lista
-        listar();
+        // Carrega a data atual
+        Date agora = new Date();
+        SimpleDateFormat dataBr = new SimpleDateFormat("dd/MM/yyyy");
+        String dataformatada = dataBr.format(agora);
+        txtdataatual.setText(dataformatada);
+        
     }//GEN-LAST:event_formWindowActivated
 
     private void btnpagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpagamentoActionPerformed
