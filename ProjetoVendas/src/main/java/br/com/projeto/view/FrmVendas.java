@@ -5,7 +5,7 @@
 package br.com.projeto.view;
 
 import br.com.projeto.dao.ClientesDAO;
-import br.com.projeto.dao.FornecedoresDAO;
+
 import br.com.projeto.dao.ProdutosDAO;
 import br.com.projeto.model.Clientes;
 import br.com.projeto.model.Fornecedores;
@@ -24,29 +24,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmVendas extends javax.swing.JFrame {
 
-    //Metodo listar na tabela
-    public void listar() {
+    double total, preco, subtotal;
+    int qtd;
 
-        ProdutosDAO dao = new ProdutosDAO();
-        List<Produtos> lista = dao.listarProdutos();
-        DefaultTableModel dados = (DefaultTableModel) tabelaProdutos.getModel();
-        dados.setNumRows(0);
+    DefaultTableModel carrinho;
 
-        for (Produtos c : lista) {
-            dados.addRow(new Object[]{
-                c.getId(),
-                c.getDescricao(),
-                c.getPreco(),
-                c.getQtd_estoque(),
-                c.getFornecedor().getNome()
-
-            });
-        }
-    }
-
-    /**
-     * Creates new form Frmcliente
-     */
     public FrmVendas() {
         initComponents();
 
@@ -335,12 +317,7 @@ public class FrmVendas extends javax.swing.JFrame {
 
         tabelaItens.setBackground(new java.awt.Color(255, 255, 255));
         tabelaItens.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
+            new Object [][] {},
             new String [] {
                 "Código", "Produto", "Qtd", "Preço", "SubTotal"
             }
@@ -444,20 +421,7 @@ public class FrmVendas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btncancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelarActionPerformed
-        //Botao excluir
-        try {
-            Produtos obj = new Produtos();
-
-            obj.setId(Integer.parseInt(txtcodigo.getText()));
-
-            ProdutosDAO dao = new ProdutosDAO();
-
-            dao.excluir(obj);
-
-            new Utilitarios().LimpaTela(painel_dados);
-
-        } catch (Exception e) {
-        }
+        //Botao Cancelar Venda
     }//GEN-LAST:event_btncancelarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -470,27 +434,7 @@ public class FrmVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void btnpagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpagamentoActionPerformed
-        //Botao editar
-        try {
-            Produtos obj = new Produtos();
-
-            obj.setId(Integer.parseInt(txtcodigo.getText()));
-            obj.setDescricao(txtdescricao.getText());
-            obj.setPreco(Double.parseDouble(txtpreco.getText()));
-            obj.setQtd_estoque(Integer.parseInt(txtqtdestoque.getText()));
-
-            Fornecedores f = new Fornecedores();
-            f = (Fornecedores) cbfornecedor.getSelectedItem();
-
-            obj.setFornecedor(f);
-
-            ProdutosDAO dao = new ProdutosDAO();
-            dao.alterar(obj);
-
-            new Utilitarios().LimpaTela(painel_dados);
-
-        } catch (Exception e) {
-        }
+        //Botao Pagamento 
     }//GEN-LAST:event_btnpagamentoActionPerformed
 
     private void btnbuscaprodutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscaprodutoActionPerformed
@@ -502,11 +446,29 @@ public class FrmVendas extends javax.swing.JFrame {
 
         txtdescricao.setText(obj.getDescricao());
         txtpreco.setText(String.valueOf(obj.getPreco()));
-        
+
     }//GEN-LAST:event_btnbuscaprodutoActionPerformed
 
     private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
-        // TODO add your handling code here:
+        // Botao Add Item
+        qtd = Integer.parseInt(txtqtd.getText());
+        preco = Double.parseDouble(txtpreco.getText());
+
+        subtotal = qtd * preco;
+
+        total += subtotal;
+        txttotal.setText(String.valueOf(total));
+
+        //Adicionar o produto no carrinho
+        carrinho = (DefaultTableModel) tabelaItens.getModel();
+
+        carrinho.addRow(new Object[]{
+            txtcodigo.getText(),
+            txtdescricao.getText(),
+            txtqtd.getText(),
+            txtpreco.getText(),
+            subtotal
+        });
     }//GEN-LAST:event_btnaddActionPerformed
 
     private void btnbuscaclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscaclienteActionPerformed
@@ -566,16 +528,24 @@ public class FrmVendas extends javax.swing.JFrame {
                 if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmVendas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmVendas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmVendas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmVendas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
