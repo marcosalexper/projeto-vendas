@@ -6,7 +6,7 @@ package br.com.projeto.view;
 
 /**
  *
- * @author Win11
+ * @author Marcos Alexandre Pereira
  */
 public class FrmPagamentos extends javax.swing.JFrame {
 
