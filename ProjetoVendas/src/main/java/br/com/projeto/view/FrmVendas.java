@@ -11,6 +11,7 @@ import br.com.projeto.model.Clientes;
 import br.com.projeto.model.Fornecedores;
 import br.com.projeto.model.Produtos;
 import br.com.projeto.model.Utilitarios;
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -169,13 +170,18 @@ public class FrmVendas extends javax.swing.JFrame {
         txtcpf.setBackground(new java.awt.Color(153, 153, 153));
         txtcpf.setForeground(new java.awt.Color(255, 255, 255));
         try {
-            txtcpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
+            txtcpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
         txtcpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtcpfActionPerformed(evt);
+            }
+        });
+        txtcpf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtcpfKeyPressed(evt);
             }
         });
 
@@ -230,6 +236,11 @@ public class FrmVendas extends javax.swing.JFrame {
 
         txtcodigo.setBackground(new java.awt.Color(153, 153, 153));
         txtcodigo.setForeground(new java.awt.Color(255, 255, 255));
+        txtcodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtcodigoKeyPressed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
@@ -455,7 +466,7 @@ public class FrmVendas extends javax.swing.JFrame {
         SimpleDateFormat dataBr = new SimpleDateFormat("dd/MM/yyyy");
         String dataformatada = dataBr.format(agora);
         txtdataatual.setText(dataformatada);
-        
+
     }//GEN-LAST:event_formWindowActivated
 
     private void btnpagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpagamentoActionPerformed
@@ -464,15 +475,14 @@ public class FrmVendas extends javax.swing.JFrame {
             Produtos obj = new Produtos();
 
             obj.setId(Integer.parseInt(txtcodigo.getText()));
-            obj.setDescricao(txtdescricao.getText());        
-            obj.setPreco(Double.parseDouble(txtpreco.getText()));          
+            obj.setDescricao(txtdescricao.getText());
+            obj.setPreco(Double.parseDouble(txtpreco.getText()));
             obj.setQtd_estoque(Integer.parseInt(txtqtdestoque.getText()));
-           
+
             Fornecedores f = new Fornecedores();
-            f = (Fornecedores)cbfornecedor.getSelectedItem();
-             
+            f = (Fornecedores) cbfornecedor.getSelectedItem();
+
             obj.setFornecedor(f);
-            
 
             ProdutosDAO dao = new ProdutosDAO();
             dao.alterar(obj);
@@ -484,37 +494,15 @@ public class FrmVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnpagamentoActionPerformed
 
     private void btnbuscaprodutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscaprodutoActionPerformed
-        // Botao pesquisar cliente por nome
-        try {
-            String nome=txtcpf.getText().trim();
-            Clientes obj = new Clientes();
-            ClientesDAO dao = new ClientesDAO();
+        // Botao pesquisar Produto por nome
+        Produtos obj = new Produtos();
+        ProdutosDAO dao = new ProdutosDAO();
 
-            obj = dao.consultaPorNome(nome);
+        obj = dao.buscaPorCodigo(Integer.parseInt(txtcodigo.getText()));
 
-            if(obj.getNome()!= null){
-
-                //Exibir os dados do obj nos campos de texto
-                txtcodigo.setText(String.valueOf(obj.getId()));
-                txtcpf.setText(obj.getNome());
-                txtrg.setText(obj.getRg());
-                txtcpf.setText(obj.getCpf());
-                txtemail.setText(obj.getEmail());
-                txtfixo.setText(obj.getTelefone());
-                txtcel.setText(obj.getCelular());
-                txtcep.setText(obj.getCep());
-                txtend.setText(obj.getEndereco());
-                txtnumero.setText(String.valueOf(obj.getNumero()));
-                txtcomplemento.setText(obj.getComplemento());
-                txtbairro.setText(obj.getBairro());
-                txtcidade.setText(obj.getCidade());
-                cbuf.setSelectedItem(obj.getUf());
-            }
-            else{
-                JOptionPane.showMessageDialog(null,"Cliente não encontrado!");
-            }
-        } catch (Exception e) {
-        }
+        txtdescricao.setText(obj.getDescricao());
+        txtpreco.setText(String.valueOf(obj.getPreco()));
+        
     }//GEN-LAST:event_btnbuscaprodutoActionPerformed
 
     private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
@@ -523,11 +511,46 @@ public class FrmVendas extends javax.swing.JFrame {
 
     private void btnbuscaclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscaclienteActionPerformed
         // TODO add your handling code here:
+
+        Clientes obj = new Clientes();
+        ClientesDAO dao = new ClientesDAO();
+
+        obj = dao.buscaporcpf(txtcpf.getText());
+
+        txtnome.setText(obj.getNome());
+
     }//GEN-LAST:event_btnbuscaclienteActionPerformed
 
     private void txtcpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcpfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcpfActionPerformed
+
+    private void txtcpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcpfKeyPressed
+        // Busca Cliente por CPF
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            Clientes obj = new Clientes();
+            ClientesDAO dao = new ClientesDAO();
+
+            obj = dao.buscaporcpf(txtcpf.getText());
+
+            txtnome.setText(obj.getNome());
+        }
+    }//GEN-LAST:event_txtcpfKeyPressed
+
+    private void txtcodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcodigoKeyPressed
+        // Busca Produto por Código
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Produtos obj = new Produtos();
+            ProdutosDAO dao = new ProdutosDAO();
+
+            obj = dao.buscaPorCodigo(Integer.parseInt(txtcodigo.getText()));
+
+            txtdescricao.setText(obj.getDescricao());
+            txtpreco.setText(String.valueOf(obj.getPreco()));
+
+        }
+    }//GEN-LAST:event_txtcodigoKeyPressed
 
     /**
      * @param args the command line arguments
