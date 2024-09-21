@@ -225,10 +225,10 @@ public class ProdutosDAO {
 
             if (rs.next()) {
 
-                obj.setId(rs.getInt("p.id"));
-                obj.setDescricao(rs.getString("p.descricao"));
-                obj.setPreco(rs.getDouble("p.preco"));
-                obj.setQtd_estoque(rs.getInt("p.qtd_estoque"));
+                obj.setId(rs.getInt("id"));
+                obj.setDescricao(rs.getString("descricao"));
+                obj.setPreco(rs.getDouble("preco"));
+                obj.setQtd_estoque(rs.getInt("qtd_estoque"));
 
             }
             return obj;
