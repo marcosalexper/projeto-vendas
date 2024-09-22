@@ -34,7 +34,7 @@ public class VendasDAO {
             //Conectar o banco de dados e organizar o comando sql
             PreparedStatement stmt = con.prepareStatement(sql);
 
-            stmt.setInt(1, obj.getId());
+            stmt.setInt(1, obj.getCliente().getId());
             stmt.setString(2, obj.getData_venda());
             stmt.setDouble(3, obj.getTotal_venda());
             stmt.setString(4, obj.getObs());
@@ -45,7 +45,7 @@ public class VendasDAO {
 
             JOptionPane.showMessageDialog(null, "Venda registrada com sucesso!");
 
-        } catch (Exception erro) {
+        } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro:" + erro);
 
         }
@@ -56,7 +56,7 @@ public class VendasDAO {
         try {
             int idvenda = 0;
 
-            String sql = "select max(id)id from vendas";
+            String sql = "select max(id)id from tb_vendas";
             PreparedStatement ps = con.prepareStatement(sql);
 
             ResultSet rs = ps.executeQuery();
