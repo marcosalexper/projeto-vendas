@@ -106,14 +106,20 @@ public class FrmVendas extends javax.swing.JFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
+        btnpagamento.setBackground(new java.awt.Color(0, 51, 204));
+        btnpagamento.setForeground(new java.awt.Color(0, 0, 0));
         btnpagamento.setText("PAGAMENTO");
+        btnpagamento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204)));
         btnpagamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnpagamentoActionPerformed(evt);
             }
         });
 
+        btncancelar.setBackground(new java.awt.Color(0, 51, 204));
+        btncancelar.setForeground(new java.awt.Color(0, 0, 0));
         btncancelar.setText("CANCELAR VENDA");
+        btncancelar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204)));
         btncancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncancelarActionPerformed(evt);
@@ -387,8 +393,8 @@ public class FrmVendas extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnpagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
-                        .addComponent(btncancelar)
-                        .addGap(50, 50, 50))
+                        .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33))
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -436,6 +442,10 @@ public class FrmVendas extends javax.swing.JFrame {
 
     private void btnpagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpagamentoActionPerformed
         //Botao Pagamento 
+        FrmPagamentos telap = new FrmPagamentos();
+        telap.txttotal.setText(String.valueOf(total));
+        telap.setVisible(true);
+        this.dispose();;
     }//GEN-LAST:event_btnpagamentoActionPerformed
 
     private void btnbuscaprodutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscaprodutoActionPerformed

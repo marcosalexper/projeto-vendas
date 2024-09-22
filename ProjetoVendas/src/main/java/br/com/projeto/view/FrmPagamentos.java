@@ -68,7 +68,7 @@ public class FrmPagamentos extends javax.swing.JFrame {
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("DINHEIRO:");
 
         txtdinheiro.setBackground(new java.awt.Color(153, 153, 153));
@@ -76,7 +76,7 @@ public class FrmPagamentos extends javax.swing.JFrame {
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("CARTÃO:");
 
         txtcartao.setBackground(new java.awt.Color(153, 153, 153));
@@ -84,7 +84,7 @@ public class FrmPagamentos extends javax.swing.JFrame {
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("CHEQUE:");
 
         txtcheque.setBackground(new java.awt.Color(153, 153, 153));
@@ -92,7 +92,7 @@ public class FrmPagamentos extends javax.swing.JFrame {
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("TROCO:");
 
         txttroco.setEditable(false);
@@ -101,7 +101,7 @@ public class FrmPagamentos extends javax.swing.JFrame {
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("TOTAL:");
 
         txttotal.setEditable(false);
@@ -110,7 +110,9 @@ public class FrmPagamentos extends javax.swing.JFrame {
 
         btnfinalizar.setBackground(new java.awt.Color(0, 51, 204));
         btnfinalizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnfinalizar.setForeground(new java.awt.Color(0, 0, 0));
         btnfinalizar.setText("FINALIZAR VENDA");
+        btnfinalizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,8 +137,8 @@ public class FrmPagamentos extends javax.swing.JFrame {
                 .addContainerGap(121, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnfinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(223, 223, 223))
+                .addComponent(btnfinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(195, 195, 195))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,9 +164,9 @@ public class FrmPagamentos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(btnfinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -218,7 +220,7 @@ public class FrmPagamentos extends javax.swing.JFrame {
     private javax.swing.JTextField txtcartao;
     private javax.swing.JTextField txtcheque;
     private javax.swing.JTextField txtdinheiro;
-    private javax.swing.JTextField txttotal;
+    public javax.swing.JTextField txttotal;
     private javax.swing.JTextField txttroco;
     // End of variables declaration//GEN-END:variables
 }
