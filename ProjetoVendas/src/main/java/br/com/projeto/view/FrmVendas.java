@@ -354,8 +354,8 @@ public class FrmVendas extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("TOTAL:");
 
-        txttotal.setBackground(new java.awt.Color(153, 153, 153));
-        txttotal.setForeground(new java.awt.Color(255, 255, 255));
+        txttotal.setBackground(new java.awt.Color(255, 255, 255));
+        txttotal.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
