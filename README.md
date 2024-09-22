@@ -17,4 +17,4 @@ Este projeto é uma aplicação desktop em Java, com MySQL como banco de dados, 
 ## Autor
 
 * Marcos Alexandre Pereira.
-* [Linkedin](in/marcosalexandrepereira)
+* [Linkedin](https://www.linkedin.com/in/marcosalexandrepereira/)
