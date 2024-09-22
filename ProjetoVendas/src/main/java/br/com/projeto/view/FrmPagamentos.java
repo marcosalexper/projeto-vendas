@@ -4,11 +4,18 @@
  */
 package br.com.projeto.view;
 
+import br.com.projeto.model.Clientes;
+import br.com.projeto.model.Vendas;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author Marcos Alexandre Pereira
  */
 public class FrmPagamentos extends javax.swing.JFrame {
+    
+    Clientes cliente = new Clientes();
 
     /**
      * Creates new form FrmPagamentos
@@ -203,12 +210,26 @@ public class FrmPagamentos extends javax.swing.JFrame {
         
         totalvenda = Double.parseDouble(txttotal.getText());
         
-        //Receber total da venda
+        //Receber total da venda e troco
         totalpago = pcartao+pcheque+pdinheiro;
         
         troco = totalpago-totalvenda;
         
         txttroco.setText(String.valueOf(troco));
+        
+        Vendas objv = new Vendas();
+        
+        //Dados do cliente(cliente_id)
+        objv.setCliente(cliente);
+        
+        Date agora = new Date();
+        SimpleDateFormat dataEUA = new SimpleDateFormat("yyyy-MM-dd");
+        String datamysql = dataEUA.format(agora);
+        objv.setData_venda(datamysql);
+        
+        //Total da venda
+        objv.setTotal_venda(totalvenda);
+        
     }//GEN-LAST:event_btnfinalizarActionPerformed
 
     /**

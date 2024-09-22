@@ -23,7 +23,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Marcos Alexandre Pereira
  */
 public class FrmVendas extends javax.swing.JFrame {
-
+    
+    Clientes obj = new Clientes();
     double total, preco, subtotal;
     int qtd;
 
@@ -449,6 +450,7 @@ public class FrmVendas extends javax.swing.JFrame {
         //Botao Pagamento 
         FrmPagamentos telap = new FrmPagamentos();
         telap.txttotal.setText(String.valueOf(total));
+        telap.cliente = obj;
         telap.setVisible(true);
         this.dispose();;
     }//GEN-LAST:event_btnpagamentoActionPerformed
@@ -507,7 +509,7 @@ public class FrmVendas extends javax.swing.JFrame {
         // Busca Cliente por CPF
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
-            Clientes obj = new Clientes();
+            
             ClientesDAO dao = new ClientesDAO();
 
             obj = dao.buscaporcpf(txtcpf.getText());
