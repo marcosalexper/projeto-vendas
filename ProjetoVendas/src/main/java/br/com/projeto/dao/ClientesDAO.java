@@ -254,7 +254,7 @@ public class ClientesDAO {
      public Clientes buscaporcpf(String cpf){
         try {
             //Criar, organizar e executar o sql
-            String sql = "select * from tb_clientes where nome = ?";
+            String sql = "select * from tb_clientes where cpf = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, cpf);
             
