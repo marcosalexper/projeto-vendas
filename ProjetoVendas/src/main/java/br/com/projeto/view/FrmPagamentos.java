@@ -255,6 +255,12 @@ public class FrmPagamentos extends javax.swing.JFrame {
         VendasDAO dao_v = new VendasDAO();
         dao_v.cadastrarVenda(objv);
         
+        //Retornar o ID da última venda realizada
+        objv.setId(dao_v.retornaUltimaVenda());
+        
+        System.out.println("id da última venda:" +objv.getId());
+        
+        
     }//GEN-LAST:event_btnfinalizarActionPerformed
 
     /**
