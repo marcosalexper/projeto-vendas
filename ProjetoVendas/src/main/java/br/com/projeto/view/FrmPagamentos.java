@@ -9,6 +9,7 @@ import br.com.projeto.model.Clientes;
 import br.com.projeto.model.Vendas;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,7 +18,7 @@ import java.util.Date;
 public class FrmPagamentos extends javax.swing.JFrame {
     
     Clientes cliente = new Clientes();
-
+    DefaultTableModel carrinho;
     /**
      * Creates new form FrmPagamentos
      */
