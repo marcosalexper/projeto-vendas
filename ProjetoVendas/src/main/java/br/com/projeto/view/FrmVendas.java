@@ -356,6 +356,11 @@ public class FrmVendas extends javax.swing.JFrame {
 
         txttotal.setBackground(new java.awt.Color(255, 255, 255));
         txttotal.setForeground(new java.awt.Color(0, 0, 0));
+        txttotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txttotalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -524,6 +529,10 @@ public class FrmVendas extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_txtcodigoKeyPressed
+
+    private void txttotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txttotalActionPerformed
 
     /**
      * @param args the command line arguments

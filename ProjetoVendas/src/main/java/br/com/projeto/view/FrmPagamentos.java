@@ -15,6 +15,11 @@ public class FrmPagamentos extends javax.swing.JFrame {
      */
     public FrmPagamentos() {
         initComponents();
+        
+       txtcartao.setText("0");
+       txtdinheiro.setText("0");
+       txtcheque.setText("0");
+       txttroco.setText("0");
     }
 
     /**
@@ -72,7 +77,7 @@ public class FrmPagamentos extends javax.swing.JFrame {
         jLabel2.setText("DINHEIRO:");
 
         txtdinheiro.setBackground(new java.awt.Color(153, 153, 153));
-        txtdinheiro.setForeground(new java.awt.Color(255, 255, 255));
+        txtdinheiro.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -80,7 +85,7 @@ public class FrmPagamentos extends javax.swing.JFrame {
         jLabel3.setText("CARTÃO:");
 
         txtcartao.setBackground(new java.awt.Color(153, 153, 153));
-        txtcartao.setForeground(new java.awt.Color(255, 255, 255));
+        txtcartao.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -88,7 +93,7 @@ public class FrmPagamentos extends javax.swing.JFrame {
         jLabel4.setText("CHEQUE:");
 
         txtcheque.setBackground(new java.awt.Color(153, 153, 153));
-        txtcheque.setForeground(new java.awt.Color(255, 255, 255));
+        txtcheque.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -97,22 +102,28 @@ public class FrmPagamentos extends javax.swing.JFrame {
 
         txttroco.setEditable(false);
         txttroco.setBackground(new java.awt.Color(153, 153, 153));
-        txttroco.setForeground(new java.awt.Color(255, 255, 255));
+        txttroco.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("TOTAL:");
 
         txttotal.setEditable(false);
         txttotal.setBackground(new java.awt.Color(153, 153, 153));
-        txttotal.setForeground(new java.awt.Color(255, 255, 255));
+        txttotal.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        txttotal.setForeground(new java.awt.Color(0, 0, 0));
 
         btnfinalizar.setBackground(new java.awt.Color(0, 51, 204));
         btnfinalizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnfinalizar.setForeground(new java.awt.Color(0, 0, 0));
         btnfinalizar.setText("FINALIZAR VENDA");
         btnfinalizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204)));
+        btnfinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnfinalizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -172,6 +183,24 @@ public class FrmPagamentos extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnfinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfinalizarActionPerformed
+        //Botao Finalizar Venda
+        double pcartao,pcheque,pdinheiro,totalpago,totalvenda,troco;
+        
+        pcartao = Double.parseDouble(txtcartao.getText());
+        pcheque = Double.parseDouble(txtcheque.getText());
+        pdinheiro = Double.parseDouble(txtdinheiro.getText());
+        
+        totalvenda = Double.parseDouble(txttotal.getText());
+        
+        //Receber total da venda
+        totalpago = pcartao+pcheque+pdinheiro;
+        
+        troco = totalpago-totalvenda;
+        
+        txttroco.setText(String.valueOf(troco));
+    }//GEN-LAST:event_btnfinalizarActionPerformed
 
     /**
      * @param args the command line arguments
