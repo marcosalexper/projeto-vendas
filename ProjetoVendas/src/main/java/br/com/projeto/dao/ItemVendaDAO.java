@@ -42,7 +42,7 @@ public class ItemVendaDAO {
             stmt.execute();
             stmt.close();
 
-            JOptionPane.showMessageDialog(null, "Item registrada com sucesso!");
+           
 
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro:" + erro);
