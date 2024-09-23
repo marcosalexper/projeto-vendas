@@ -4,6 +4,13 @@
  */
 package br.com.projeto.view;
 
+import br.com.projeto.dao.VendasDAO;
+import br.com.projeto.model.Vendas;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Marcos Alexandre Pereira
@@ -182,7 +189,30 @@ public class FrmHistorico extends javax.swing.JFrame {
     }//GEN-LAST:event_txtdatafimActionPerformed
 
     private void btnpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarActionPerformed
-        // Botao pesquisar cliente por nome
+        // Botao pesquisar por periodo
+        
+        //Receber as datas
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate data_inicio = LocalDate.parse(txtdatainicio.getText(), formato);
+        LocalDate data_fim = LocalDate.parse(txtdatafim.getText(), formato);
+        
+        VendasDAO dao = new VendasDAO();
+        List<Vendas> lista = dao.listarVendasPorPeriodo(data_inicio,data_fim);
+        
+        DefaultTableModel dados = (DefaultTableModel)tabelaHistorico.getModel();
+        dados.setNumRows(0);
+        
+        for(Vendas v : lista) {
+            dados.addRow(new Object[]{
+            v.getId(),
+            v.getData_venda(),
+            v.getCliente().getNome(),
+            v.getTotal_venda(),
+            v.getObs()
+           
+        });
+    }
+        
        
     }//GEN-LAST:event_btnpesquisarActionPerformed
 
