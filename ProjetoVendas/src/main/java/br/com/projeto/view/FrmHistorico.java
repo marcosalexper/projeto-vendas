@@ -9,6 +9,7 @@ import br.com.projeto.model.Vendas;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -190,8 +191,9 @@ public class FrmHistorico extends javax.swing.JFrame {
 
     private void btnpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarActionPerformed
         // Botao pesquisar por periodo
-        
-        //Receber as datas
+        try {
+            
+            //Receber as datas
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate data_inicio = LocalDate.parse(txtdatainicio.getText(), formato);
         LocalDate data_fim = LocalDate.parse(txtdatafim.getText(), formato);
@@ -211,6 +213,10 @@ public class FrmHistorico extends javax.swing.JFrame {
             v.getObs()
            
         });
+        } 
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Nenhum registro encontrado!");
+        
     }
         
        
