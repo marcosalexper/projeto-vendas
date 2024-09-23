@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -78,18 +79,18 @@ public class VendasDAO {
     }
 
     //Metodo que filtra Vendas por Datas
-    public List<Vendas> listarVendasPorPeriodo(String data_inicio, String data_fim) {
+    public List<Vendas> listarVendasPorPeriodo(LocalDate data_inicio, LocalDate data_fim) {
         try {
             
             List<Vendas> lista = new ArrayList<>();
 
             //Criar, organizar e executar o sql
             String sql = "select v.id, v.data_venda, c.nome, v.total_venda, v.observacoes from tb_vendas as v "
-                    + " inner join tb_clientes as c on(v.cliente id=c.id)where v.data_venda BETWEEN ? AND ?";
+                    + " inner join tb_clientes as c on(v.cliente_id=c.id)where v.data_venda BETWEEN ? AND ?";
             
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1, data_inicio);
-            stmt.setString(2, data_fim);
+            stmt.setString(1, data_inicio.toString());
+            stmt.setString(2, data_fim.toString());
             
             ResultSet rs = stmt.executeQuery();
             
