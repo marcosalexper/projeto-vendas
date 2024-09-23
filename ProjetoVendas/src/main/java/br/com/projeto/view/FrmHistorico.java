@@ -156,6 +156,11 @@ public class FrmHistorico extends javax.swing.JFrame {
                 "Código", "Data da Venda", "Cliente", "Total da Venda", "Obs."
             }
         ));
+        tabelaHistorico.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaHistoricoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelaHistorico);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -192,35 +197,48 @@ public class FrmHistorico extends javax.swing.JFrame {
     private void btnpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarActionPerformed
         // Botao pesquisar por periodo
         try {
-            
+
             //Receber as datas
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate data_inicio = LocalDate.parse(txtdatainicio.getText(), formato);
-        LocalDate data_fim = LocalDate.parse(txtdatafim.getText(), formato);
-        
-        VendasDAO dao = new VendasDAO();
-        List<Vendas> lista = dao.listarVendasPorPeriodo(data_inicio,data_fim);
-        
-        DefaultTableModel dados = (DefaultTableModel)tabelaHistorico.getModel();
-        dados.setNumRows(0);
-        
-        for(Vendas v : lista) {
-            dados.addRow(new Object[]{
-            v.getId(),
-            v.getData_venda(),
-            v.getCliente().getNome(),
-            v.getTotal_venda(),
-            v.getObs()
-           
-        });
-        } 
-        }catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Nenhum registro encontrado!");
-        
-    }
-        
-       
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate data_inicio = LocalDate.parse(txtdatainicio.getText(), formato);
+            LocalDate data_fim = LocalDate.parse(txtdatafim.getText(), formato);
+
+            VendasDAO dao = new VendasDAO();
+            List<Vendas> lista = dao.listarVendasPorPeriodo(data_inicio, data_fim);
+
+            DefaultTableModel dados = (DefaultTableModel) tabelaHistorico.getModel();
+            dados.setNumRows(0);
+
+            for (Vendas v : lista) {
+                dados.addRow(new Object[]{
+                    v.getId(),
+                    v.getData_venda(),
+                    v.getCliente().getNome(),
+                    v.getTotal_venda(),
+                    v.getObs()
+
+                });
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Nenhum registro encontrado!");
+
+        }
+
+
     }//GEN-LAST:event_btnpesquisarActionPerformed
+
+    private void tabelaHistoricoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaHistoricoMouseClicked
+        //Clicar em uma venda
+        FrmDetalheVenda tela = new FrmDetalheVenda();
+
+        tela.txtcliente.setText(tabelaHistorico.getValueAt(tabelaHistorico.getSelectedRow(), 2).toString());
+        tela.txttotalvenda.setText(tabelaHistorico.getValueAt(tabelaHistorico.getSelectedRow(), 3).toString());
+        tela.txtdatavenda.setText(tabelaHistorico.getValueAt(tabelaHistorico.getSelectedRow(), 1).toString());
+        tela.txtobsvenda.setText(tabelaHistorico.getValueAt(tabelaHistorico.getSelectedRow(), 4).toString());
+
+        tela.setVisible(true);
+        
+    }//GEN-LAST:event_tabelaHistoricoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -258,9 +276,6 @@ public class FrmHistorico extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnbusca;
-    private javax.swing.JButton btnbusca1;
-    private javax.swing.JButton btnbusca2;
     private javax.swing.JButton btnpesquisar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
@@ -269,9 +284,6 @@ public class FrmHistorico extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaHistorico;
-    private javax.swing.JFormattedTextField txtcep;
-    private javax.swing.JFormattedTextField txtcep1;
-    private javax.swing.JFormattedTextField txtcep2;
     private javax.swing.JFormattedTextField txtdatafim;
     private javax.swing.JFormattedTextField txtdatainicio;
     // End of variables declaration//GEN-END:variables
