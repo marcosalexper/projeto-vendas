@@ -239,5 +239,24 @@ public class ProdutosDAO {
             return null;
         }
     }
+    //Metodo que da baixa no estoque
+    public void baixaEstoque(int id, int qtd_nova){
+        try {
+            
+            String sql = "update tb_produtos set qtd_estoque= ? where id= ?";
+            
+            PreparedStatement stmt = con.prepareStatement(sql);
+            
+            stmt.setInt(1,qtd_nova);
+            stmt.setInt(2,id);
+            
+            stmt.execute();
+            stmt.close();
+            
+        } catch (Exception erro) {
+            
+            JOptionPane.showMessageDialog(null,"Erro.." +erro);
+        }
+    }
 
 }
