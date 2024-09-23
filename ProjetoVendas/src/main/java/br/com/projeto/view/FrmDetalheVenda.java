@@ -50,14 +50,14 @@ public class FrmDetalheVenda extends javax.swing.JFrame {
         tabelaItensVendido = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Histórico de Vendas");
+        setTitle("Detalhes da Venda");
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 204));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Detalhe da Venda");
+        jLabel1.setText("Detalhes da Venda");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -95,12 +95,15 @@ public class FrmDetalheVenda extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Total da Venda:");
 
+        txtcliente.setEditable(false);
         txtcliente.setBackground(new java.awt.Color(153, 153, 153));
         txtcliente.setForeground(new java.awt.Color(0, 0, 0));
 
+        txttotalvenda.setEditable(false);
         txttotalvenda.setBackground(new java.awt.Color(153, 153, 153));
         txttotalvenda.setForeground(new java.awt.Color(0, 0, 0));
 
+        txtdatavenda.setEditable(false);
         txtdatavenda.setBackground(new java.awt.Color(153, 153, 153));
         txtdatavenda.setForeground(new java.awt.Color(255, 255, 255));
         try {
@@ -114,6 +117,7 @@ public class FrmDetalheVenda extends javax.swing.JFrame {
             }
         });
 
+        txtobsvenda.setEditable(false);
         txtobsvenda.setBackground(new java.awt.Color(153, 153, 153));
         txtobsvenda.setColumns(20);
         txtobsvenda.setRows(5);
