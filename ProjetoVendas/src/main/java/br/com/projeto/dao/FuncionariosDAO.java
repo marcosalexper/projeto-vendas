@@ -21,14 +21,14 @@ import javax.swing.JOptionPane;
  * @author Marco Alexandre Pereira
  */
 public class FuncionariosDAO {
-    
+
     //Conexao
-     private Connection con;
+    private Connection con;
 
     public FuncionariosDAO() {
         this.con = new ConnectionFactory().getConnection();
     }
-    
+
     //Metodo cadastrar Funcionario
     public void cadastrarFuncionarios(Funcionarios obj) {
 
@@ -44,9 +44,9 @@ public class FuncionariosDAO {
             stmt.setString(2, obj.getRg());
             stmt.setString(3, obj.getCpf());
             stmt.setString(4, obj.getEmail());
-            stmt.setString(5,obj.getSenha());
-            stmt.setString(6,obj.getCargo());
-            stmt.setString(7,obj.getNivel_acesso());
+            stmt.setString(5, obj.getSenha());
+            stmt.setString(6, obj.getCargo());
+            stmt.setString(7, obj.getNivel_acesso());
             stmt.setString(8, obj.getTelefone());
             stmt.setString(9, obj.getCelular());
             stmt.setString(10, obj.getCep());
@@ -69,7 +69,8 @@ public class FuncionariosDAO {
         }
 
     }
-     //Metodo AlterarFuncionarios
+    //Metodo AlterarFuncionarios
+
     public void alterarFuncionario(Funcionarios obj) {
         try {
 
@@ -133,9 +134,9 @@ public class FuncionariosDAO {
         }
 
     }
-    
+
     //Metodo listar todos os Funcionarios
-     public List<Funcionarios> listarFuncionarios() {
+    public List<Funcionarios> listarFuncionarios() {
 
         try {
 
@@ -179,7 +180,8 @@ public class FuncionariosDAO {
             return null;
         }
     }
-     //Metodo Buscar funcionario por nome
+    //Metodo Buscar funcionario por nome
+
     public List<Funcionarios> buscaFuncionarioPorNome(String nome) {
 
         try {
@@ -222,25 +224,26 @@ public class FuncionariosDAO {
             return null;
         }
     }
-     //Metodo consulta funcionario por nome
-    public Funcionarios consultaPorNome(String nome){
+    //Metodo consulta funcionario por nome
+
+    public Funcionarios consultaPorNome(String nome) {
         try {
             //Criar, organizar e executar o sql
             String sql = "select * from tb_funcionarios where nome = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, nome);
-            
+
             ResultSet rs = stmt.executeQuery();
             Funcionarios obj = new Funcionarios();
-            
-            if(rs.next()) {
+
+            if (rs.next()) {
 
                 obj.setId(rs.getInt("id"));
                 obj.setNome(rs.getString("nome"));
                 obj.setRg(rs.getString("rg"));
                 obj.setCpf(rs.getString("cpf"));
                 obj.setEmail(rs.getString("email"));
-                obj.setSenha(rs.getString("senha"));               
+                obj.setSenha(rs.getString("senha"));
                 obj.setCargo(rs.getString("cargo"));
                 obj.setNivel_acesso(rs.getString("nivel_acesso"));
                 obj.setTelefone(rs.getString("telefone"));
@@ -253,45 +256,57 @@ public class FuncionariosDAO {
                 obj.setCidade(rs.getString("cidade"));
                 obj.setUf(rs.getString("estado"));
             }
-            
+
             return obj;
 
-            
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Funcionário não encontrado!");
+            JOptionPane.showMessageDialog(null, "Funcionário não encontrado!");
             return null;
         }
- 
+
     }
-    
+
     //Metodo efetuaLogin
-    public void efetuaLogin(String email, String senha){
-        try {
-            
-            //Comando SQL
-            String sql = "select * from tb_funcionarios where email=? and senha=?";
-            PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1, email);
-            stmt.setString(2, senha);
-            
-            ResultSet rs = stmt.executeQuery();
-            
-            if(rs.next()){
-              //Usuario logou
-              JOptionPane.showMessageDialog(null,"Seja bem-vindo!");
-              Frmmenu tela = new Frmmenu();
-              tela.usuarioLogado = rs.getString("nome");
-              tela.setVisible(true);
-              
-            }else{
-              //Dados incorretos
-              JOptionPane.showMessageDialog(null,"Dados incorretos, tente novamente!");
-              new FrmLogin().setVisible(true);
-            }
-            
-        } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null,"Erro..." +erro);
+    public void efetuaLogin(String email, String senha) {
+         try {
+        // Comando SQL
+        String sql = "select * from tb_funcionarios where email=? and senha=?";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1, email);
+        stmt.setString(2, senha);
+
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            // Verifica o nível de acesso do usuário
+            String nivelAcesso = rs.getString("nivel_acesso");
+
+            if (nivelAcesso.equals("Administrador")) {
+                JOptionPane.showMessageDialog(null, "Seja bem-vindo, Admin!");
+                Frmmenu tela = new Frmmenu();
+                tela.usuarioLogado = rs.getString("nome");
+                tela.setVisible(true);
+            } 
+            else if (nivelAcesso.equals("Usuário")) {
+                JOptionPane.showMessageDialog(null, "Seja bem-vindo, Usuário!");
+                Frmmenu tela = new Frmmenu();
+                tela.usuarioLogado = rs.getString("nome");
+
+                // Desabilitando os menus para usuário comum
+                tela.menu_posicao.setVisible(false);
+                tela.menu_controlevendas.setVisible(false);
+
+                tela.setVisible(true);
+            } 
+        } else {
+            // Dados incorretos
+            JOptionPane.showMessageDialog(null, "Dados incorretos, tente novamente!");
+            new FrmLogin().setVisible(true);
         }
+
+    } catch (SQLException erro) {
+        JOptionPane.showMessageDialog(null, "Erro..." + erro);
     }
-    
+}
+
 }
