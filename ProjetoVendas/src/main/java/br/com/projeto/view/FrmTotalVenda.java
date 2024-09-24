@@ -152,7 +152,7 @@ public class FrmTotalVenda extends javax.swing.JFrame {
             
         } catch (Exception e) {
             
-            JOptionPane.showMessageDialog(null, "Informe uma data corretamente!" +e);
+            JOptionPane.showMessageDialog(null,"Data incorreta! Informe novamente." +e);
         }
     }//GEN-LAST:event_btnconsultarActionPerformed
 
