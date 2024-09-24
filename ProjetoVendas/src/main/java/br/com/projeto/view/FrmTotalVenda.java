@@ -4,6 +4,11 @@
  */
 package br.com.projeto.view;
 
+import br.com.projeto.dao.VendasDAO;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Win11
@@ -74,6 +79,11 @@ public class FrmTotalVenda extends javax.swing.JFrame {
         });
 
         btnconsultar.setText("Consultar");
+        btnconsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnconsultarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -120,11 +130,31 @@ public class FrmTotalVenda extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtdataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdataActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtdataActionPerformed
+
+    private void btnconsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnconsultarActionPerformed
+        //Botao que calcula total de vendas por data
+        try {
+            //Receber a data
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate data_venda = LocalDate.parse(txtdata.getText(), formato);
+            
+            double total_venda;
+            VendasDAO dao = new VendasDAO();
+            total_venda = dao.retornaTotalVendaPorData(data_venda);
+            
+            txttotalvenda.setText(String.valueOf(total_venda));
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Informe uma data corretamente!" +e);
+        }
+    }//GEN-LAST:event_btnconsultarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,7 +167,7 @@ public class FrmTotalVenda extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
