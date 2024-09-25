@@ -4,10 +4,8 @@
  */
 package br.com.projeto.view;
 
-import br.com.projeto.dao.ClientesDAO;
 import br.com.projeto.dao.FornecedoresDAO;
 import br.com.projeto.dao.ProdutosDAO;
-import br.com.projeto.model.Clientes;
 import br.com.projeto.model.Fornecedores;
 import br.com.projeto.model.Produtos;
 import br.com.projeto.model.Utilitarios;
@@ -405,12 +403,12 @@ public class FrmProdutos extends javax.swing.JFrame {
         try {
             Produtos obj = new Produtos();
 
-            obj.setDescricao(txtdescricao.getText());          
+            obj.setDescricao(txtdescricao.getText());
             obj.setPreco(Double.parseDouble(txtpreco.getText()));
             obj.setQtd_estoque(Integer.parseInt(txtqtdestoque.getText()));
-            
+
             Fornecedores f = new Fornecedores();
-            f = (Fornecedores)cbfornecedor.getSelectedItem();
+            f = (Fornecedores) cbfornecedor.getSelectedItem();
             obj.setFornecedor(f);
 
             ProdutosDAO dao = new ProdutosDAO();
@@ -433,18 +431,17 @@ public class FrmProdutos extends javax.swing.JFrame {
         jTabbedPane1.setSelectedIndex(0);
 
         txtcodigo.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 0).toString());
-        txtdescricao.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 1).toString());   
+        txtdescricao.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 1).toString());
         txtpreco.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 2).toString());
-        txtqtdestoque.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(),3).toString());
-        
-        
+        txtqtdestoque.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 3).toString());
+
         Fornecedores f = new Fornecedores();
         FornecedoresDAO dao = new FornecedoresDAO();
-        f = dao.consultaPorNome(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(),4).toString());
-        
+        f = dao.consultaPorNome(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 4).toString());
+
         cbfornecedor.removeAllItems();
         cbfornecedor.getModel().setSelectedItem(f);
-        
+
     }//GEN-LAST:event_tabelaProdutosMouseClicked
 
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
@@ -453,15 +450,14 @@ public class FrmProdutos extends javax.swing.JFrame {
             Produtos obj = new Produtos();
 
             obj.setId(Integer.parseInt(txtcodigo.getText()));
-            obj.setDescricao(txtdescricao.getText());        
-            obj.setPreco(Double.parseDouble(txtpreco.getText()));          
+            obj.setDescricao(txtdescricao.getText());
+            obj.setPreco(Double.parseDouble(txtpreco.getText()));
             obj.setQtd_estoque(Integer.parseInt(txtqtdestoque.getText()));
-           
+
             Fornecedores f = new Fornecedores();
-            f = (Fornecedores)cbfornecedor.getSelectedItem();
-             
+            f = (Fornecedores) cbfornecedor.getSelectedItem();
+
             obj.setFornecedor(f);
-            
 
             ProdutosDAO dao = new ProdutosDAO();
             dao.alterar(obj);
@@ -484,7 +480,7 @@ public class FrmProdutos extends javax.swing.JFrame {
 
         for (Produtos c : lista) {
             dados.addRow(new Object[]{
-                 c.getId(),
+                c.getId(),
                 c.getDescricao(),
                 c.getPreco(),
                 c.getQtd_estoque(),
@@ -507,7 +503,7 @@ public class FrmProdutos extends javax.swing.JFrame {
 
         for (Produtos c : lista) {
             dados.addRow(new Object[]{
-                 c.getId(),
+                c.getId(),
                 c.getDescricao(),
                 c.getPreco(),
                 c.getQtd_estoque(),
@@ -521,30 +517,29 @@ public class FrmProdutos extends javax.swing.JFrame {
     private void btnbuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscaActionPerformed
         // Botao pesquisar produto por nome
         try {
-            String nome=txtdescricao.getText().trim();
+            String nome = txtdescricao.getText().trim();
             Produtos obj = new Produtos();
             ProdutosDAO dao = new ProdutosDAO();
 
             obj = dao.consultaPorNome(nome);
             cbfornecedor.removeAllItems();
 
-            if(obj.getDescricao()!= null){
+            if (obj.getDescricao() != null) {
 
                 //Exibir os dados do obj nos campos de texto
                 txtcodigo.setText(String.valueOf(obj.getId()));
-                txtdescricao.setText(obj.getDescricao());             
+                txtdescricao.setText(obj.getDescricao());
                 txtpreco.setText(String.valueOf(obj.getPreco()));
                 txtqtdestoque.setText(String.valueOf(obj.getQtd_estoque()));
-               
+
                 Fornecedores f = new Fornecedores();
                 FornecedoresDAO fdao = new FornecedoresDAO();
-                
+
                 f = fdao.consultaPorNome(obj.getFornecedor().getNome());
-                
+
                 cbfornecedor.getModel().setSelectedItem(f);
-            }
-            else{
-                JOptionPane.showMessageDialog(null,"Produto não encontrado!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Produto não encontrado!");
             }
         } catch (Exception e) {
         }
@@ -554,19 +549,19 @@ public class FrmProdutos extends javax.swing.JFrame {
         //Carregando combobox Fornecedor
         FornecedoresDAO dao = new FornecedoresDAO();
         List<Fornecedores> listadefornecedores = dao.listarFornecedores();
-        
+
         cbfornecedor.removeAll();
-        for(Fornecedores f : listadefornecedores){
+        for (Fornecedores f : listadefornecedores) {
             cbfornecedor.addItem(f);
         }
     }//GEN-LAST:event_cbfornecedorAncestorAdded
 
     private void cbfornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbfornecedorMouseClicked
         FornecedoresDAO dao = new FornecedoresDAO();
-        List<Fornecedores>listadefornecedores = dao.listarFornecedores();
+        List<Fornecedores> listadefornecedores = dao.listarFornecedores();
         cbfornecedor.removeAllItems();
-        
-        for(Fornecedores f : listadefornecedores){
+
+        for (Fornecedores f : listadefornecedores) {
             cbfornecedor.addItem(f);
         }
     }//GEN-LAST:event_cbfornecedorMouseClicked
