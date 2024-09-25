@@ -283,5 +283,26 @@ public class ProdutosDAO {
             throw new RuntimeException(e);
         }
     }
+    
+    //Método para adicionar produtos no estoque
+     //Metodo que da baixa no estoque
+    public void adicionarEstoque(int id, int qtd_nova) {
+        try {
+
+            String sql = "update tb_produtos set qtd_estoque= ? where id= ?";
+            //Conectar banco de dados e organizar o comando sql
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            stmt.setInt(1, qtd_nova);
+            stmt.setInt(2, id);
+
+            stmt.execute();
+            stmt.close();
+
+        } catch (Exception erro) {
+
+            JOptionPane.showMessageDialog(null, "Erro.." + erro);
+        }
+    }
 
 }

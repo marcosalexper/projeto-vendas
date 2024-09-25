@@ -124,14 +124,14 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="txttotalvenda" linkSize="4" min="-2" pref="109" max="-2" attributes="0"/>
+                          <Component id="txtqtd" linkSize="4" min="-2" pref="109" max="-2" attributes="0"/>
                       </Group>
                       <Component id="txtpesquisa" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnpesquisar" linkSize="5" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton1" linkSize="5" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnadd" linkSize="5" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -153,12 +153,12 @@
                               <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtestoque" linkSize="3" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                               <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txttotalvenda" linkSize="3" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="txtqtd" linkSize="3" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButton1" linkSize="6" max="32767" attributes="0"/>
+                          <Component id="btnadd" linkSize="6" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="41" max="32767" attributes="0"/>
@@ -213,9 +213,8 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="txttotalvenda">
+        <Component class="javax.swing.JTextField" name="txtqtd">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="99" type="rgb"/>
             </Property>
@@ -249,10 +248,13 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnpesquisarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnadd">
           <Properties>
             <Property name="text" type="java.lang.String" value="Adicionar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnaddActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

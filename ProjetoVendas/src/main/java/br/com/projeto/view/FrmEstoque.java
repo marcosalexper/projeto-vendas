@@ -19,8 +19,10 @@ import javax.swing.table.DefaultTableModel;
  * @author Marcos Alexandre Pereira
  */
 public class FrmEstoque extends javax.swing.JFrame {
-    
-      //Metodo listar na tabela
+
+    int idproduto, qtd_nova;
+
+    //Metodo listar na tabela
     public void listar() {
 
         ProdutosDAO dao = new ProdutosDAO();
@@ -39,7 +41,6 @@ public class FrmEstoque extends javax.swing.JFrame {
             });
         }
     }
-
 
     public FrmEstoque() {
         initComponents();
@@ -61,10 +62,10 @@ public class FrmEstoque extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtpesquisa = new javax.swing.JTextField();
-        txttotalvenda = new javax.swing.JTextField();
+        txtqtd = new javax.swing.JTextField();
         txtestoque = new javax.swing.JTextField();
         btnpesquisar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnadd = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaProdutos = new javax.swing.JTable();
 
@@ -118,9 +119,8 @@ public class FrmEstoque extends javax.swing.JFrame {
         txtpesquisa.setBackground(new java.awt.Color(153, 153, 153));
         txtpesquisa.setForeground(new java.awt.Color(0, 0, 0));
 
-        txttotalvenda.setEditable(false);
-        txttotalvenda.setBackground(new java.awt.Color(153, 153, 153));
-        txttotalvenda.setForeground(new java.awt.Color(0, 0, 0));
+        txtqtd.setBackground(new java.awt.Color(153, 153, 153));
+        txtqtd.setForeground(new java.awt.Color(0, 0, 0));
 
         txtestoque.setEditable(false);
         txtestoque.setBackground(new java.awt.Color(153, 153, 153));
@@ -133,7 +133,12 @@ public class FrmEstoque extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Adicionar");
+        btnadd.setText("Adicionar");
+        btnadd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnaddActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -151,18 +156,18 @@ public class FrmEstoque extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel10)
                         .addGap(18, 18, 18)
-                        .addComponent(txttotalvenda, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtqtd, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtpesquisa))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnpesquisar)
-                    .addComponent(jButton1))
+                    .addComponent(btnadd))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtestoque, txttotalvenda});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtestoque, txtqtd});
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnpesquisar, jButton1});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnadd, btnpesquisar});
 
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,16 +184,16 @@ public class FrmEstoque extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(txtestoque, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10)
-                            .addComponent(txttotalvenda, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtqtd, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(btnadd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtestoque, txtpesquisa, txttotalvenda});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtestoque, txtpesquisa, txtqtd});
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnpesquisar, jButton1});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnadd, btnpesquisar});
 
         tabelaProdutos.setBackground(new java.awt.Color(255, 255, 255));
         tabelaProdutos.setModel(new javax.swing.table.DefaultTableModel(
@@ -231,7 +236,7 @@ public class FrmEstoque extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarActionPerformed
-  //Botao pesquisar
+        //Botao pesquisar
         String nome = "%" + txtpesquisa.getText() + "%";
 
         ProdutosDAO dao = new ProdutosDAO();
@@ -258,9 +263,29 @@ public class FrmEstoque extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void tabelaProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaProdutosMouseClicked
-        //
-           txtestoque.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 3).toString());
+        //Pega os Dados
+        idproduto = Integer.parseInt(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 0).toString());
+        txtpesquisa.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 1).toString());
+        txtestoque.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 3).toString());
     }//GEN-LAST:event_tabelaProdutosMouseClicked
+
+    private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
+        //Botão para adicionar produtos no estoque
+        try {
+            int qtd_estoque, qtd;
+
+            qtd_estoque = Integer.parseInt(txtestoque.getText());
+            qtd = Integer.parseInt(txtqtd.getText());
+            qtd_nova = qtd_estoque + qtd;
+            ProdutosDAO dao = new ProdutosDAO();
+
+            dao.adicionarEstoque(idproduto, qtd_nova);
+            JOptionPane.showMessageDialog(null, "Estoque Atualizado!");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Selecione o produto ou informe a nova quantidade" + e);
+        }
+    }//GEN-LAST:event_btnaddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -301,8 +326,8 @@ public class FrmEstoque extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnadd;
     private javax.swing.JButton btnpesquisar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel7;
@@ -313,6 +338,6 @@ public class FrmEstoque extends javax.swing.JFrame {
     public javax.swing.JTable tabelaProdutos;
     public javax.swing.JTextField txtestoque;
     public javax.swing.JTextField txtpesquisa;
-    public javax.swing.JTextField txttotalvenda;
+    public javax.swing.JTextField txtqtd;
     // End of variables declaration//GEN-END:variables
 }
