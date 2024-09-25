@@ -165,6 +165,11 @@ public class Frmmenu extends javax.swing.JFrame {
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/buscar.png"))); // NOI18N
         jMenuItem4.setText("Controle de Estoque");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem4);
 
         jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -325,6 +330,12 @@ public class Frmmenu extends javax.swing.JFrame {
         FrmHistorico tela = new FrmHistorico();
         tela.setVisible(true);
     }//GEN-LAST:event_menu_controlevendasActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        //Menu Controle de Estoque
+        FrmEstoque tela = new FrmEstoque();
+        tela.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
