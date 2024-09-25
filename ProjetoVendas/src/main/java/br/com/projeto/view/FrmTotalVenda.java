@@ -39,7 +39,7 @@ public class FrmTotalVenda extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txttotalvenda = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Total das Vendas(R$)");
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 204));
