@@ -14,6 +14,9 @@ Este projeto é uma aplicação desktop em Java, com MySQL como banco de dados, 
 - [x] Cadastro e gerenciamento de produtos.
 - [x] Registro e gerenciamento de vendas.</br>
 
+## Status do Projeto
+- [x] Finalizado.
+
 ## Autor
 
 * Marcos Alexandre Pereira.
