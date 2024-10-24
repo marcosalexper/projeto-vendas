@@ -1,15 +1,6 @@
-
-
 CREATE DATABASE BDVENDAS;
 
-
-CREATE USER 'usuariocurso'@'%' IDENTIFIED BY '123';
-
-GRANT ALL ON *.* TO 'usuariocurso'@'%' WITH GRANT OPTION;
-
-
 flush privileges;
-
 
 USE BDVENDAS;
 
